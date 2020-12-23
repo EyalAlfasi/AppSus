@@ -5,7 +5,7 @@ export const utilService = {
     timeStampToDateTime
 }
 
-function makeId(length = 12) {
+function makeId(length = 2) {
     var txt = '';
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -26,7 +26,7 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
-function timeStampToDateTime (timeStamp){
+function timeStampToDateTime(timeStamp) {
     const dateTimeObj = new Date(timeStamp)
     const formattedDate = dateTimeObj.toLocaleString();
     console.log(formattedDate);
