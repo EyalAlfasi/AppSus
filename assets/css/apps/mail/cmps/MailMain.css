@@ -1,0 +1,20 @@
+.mail-icons{
+    align-self: flex-end;
+}
+.mail-icons i {
+    background-color: #bbbbbb;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin: 0 3px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.mail-icons i:hover {
+    background-color: #d3d3d3;
+    transform: translateY(-2px);
+}

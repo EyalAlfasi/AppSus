@@ -1,4 +1,5 @@
 import { utilService } from "../../../services/utilService"
+import { mailService } from "../services/mailService"
 import { MailContent } from "./MailContent.jsx"
 export class MailPreview extends React.Component {
     state = {
@@ -8,7 +9,6 @@ export class MailPreview extends React.Component {
     toggleMailContent = () => {
         this.setState({ isMailOpen: !this.state.isMailOpen })
     }
-
 
     render() {
         const { mail } = this.props;
@@ -22,7 +22,7 @@ export class MailPreview extends React.Component {
                 </div>
                 <h5>{utilService.timeStampToDateTime(mail.sentAt)}</h5>
             </section>
-            {this.state.isMailOpen && <MailContent mail={mail} />}
+            {this.state.isMailOpen && <MailContent onRemove={this.props.onRemove} mail={mail} />}
         </section>
     }
 }

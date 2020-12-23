@@ -3,6 +3,7 @@
 }
 
 .mail-preview-container {
+    padding: 5px 8px;
     background-color: #f5f5f5;
     display: flex;
     justify-content: space-between;
@@ -22,6 +23,12 @@
     font-weight: 400;
 }
 
+.mail-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 8px;
+}
+
 .mail-content-container div {
     display: flex;
     align-items: center;
@@ -29,4 +36,8 @@
 
 .mail-content-container div h5 {
     color: #aaaaaa;
+}
+
+.mail-content-container span.icon {
+    align-self: flex-end;
 }

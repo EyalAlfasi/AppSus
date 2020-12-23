@@ -15,7 +15,8 @@ function query() {
 
 
 function removeMail(mailId) {
-    mails = gPets.filter(mailId => mail.id !== mailId);
+    console.log('hi');
+    mails = mails.filter(mail => mail.id !== mailId);
     storageService.saveToStorage(MAILS_KEY,mails)
     return Promise.resolve();
 }
