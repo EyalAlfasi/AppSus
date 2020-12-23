@@ -1,0 +1,11 @@
+.notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    grid-gap: 20px;
+    margin-top: 10px;
+}
+
+.note {
+    background-color: rgb(203, 247, 162);
+    text-align: center;
+}

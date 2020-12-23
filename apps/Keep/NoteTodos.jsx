@@ -1,7 +1,7 @@
 
 export function NoteTodos({ info }) {
 
-    return <label>
+    return <label className="note note-todos">
         <h4>{info.label}</h4>
         {info.todos.map((todo, idx) => 
             <section className="todos-content" key={idx}>

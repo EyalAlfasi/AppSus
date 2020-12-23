@@ -6,6 +6,7 @@ export class KeepApp extends React.Component {
     state = {
         notes: [],
         // answers: []
+        
     }
 
     componentDidMount() {
@@ -26,9 +27,12 @@ export class KeepApp extends React.Component {
 
         return (<section>
             <h2>I'm the KeepApp component</h2>
+            <input type="text" placeholder="whats on your mind.."/>
+            <section className="notes-container">
             {notes.map((note,idx) => {
                 return <DynamicKeepCmp key={idx} currCmp={note.type} info={note.info} />
             })}
+            </section>
         </section>
         )
     }

@@ -1,12 +1,10 @@
 import { storageService } from '../services/storageService.js';
 
 
-
 export const KeepService = {
     query,
 
 }
-
 
 
 function query() {

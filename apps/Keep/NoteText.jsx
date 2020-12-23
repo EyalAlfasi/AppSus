@@ -2,7 +2,7 @@
 
 export function NoteText({ info}) {
    
-    return ( <section>
+    return ( <section className="note note-text">
        <h1>{info.txt}</h1> 
       
     </section>)
