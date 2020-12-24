@@ -1,4 +1,4 @@
-// import { utilService } from "../../../services/utilService"
+// import { utilService } from "../../../services/utilService.js"
 export function MailContent({ mail, onRemove }) {
 
     return <section className="mail-content-container">

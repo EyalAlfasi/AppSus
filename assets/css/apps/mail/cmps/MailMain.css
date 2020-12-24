@@ -18,3 +18,13 @@
     background-color: #d3d3d3;
     transform: translateY(-2px);
 }
+
+.mail-and-sidebar-container{
+    display: flex;
+    position: relative;
+}
+
+.mail-list-container{
+    flex-grow: 4;
+}
+

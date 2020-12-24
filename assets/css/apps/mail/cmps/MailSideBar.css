@@ -1,0 +1,55 @@
+.mail-sidebar-container {
+    flex-grow: 1;
+    background-color: #222222;
+    padding-top: 20px;
+    padding: 1em;
+    height: 90vh;
+}
+
+.compose-btn {
+    background-color: #333333;
+    color: #f9f9f9;
+    border: none;
+    font-size: 2em;
+    padding: 10px;
+    border-radius: 50px;
+    transition:  all 0.2s ease;
+    margin-bottom: 25px;
+}
+
+.mail-sidebar-container i {
+    color: #4de77b;
+}
+
+.compose-btn:hover {
+    color: #4de77b;
+    background-color: #444444;
+}
+
+.mail-sidebar-container li{
+    font-size: 1.4em;
+    color: #f9f9f9;
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin: 10px 20px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.mail-sidebar-container li i{
+    margin: 0 15px;
+}
+
+.mail-sidebar-container li:hover{
+    background-color: #444444;
+}
+
+@media(max-width:768px){
+    .mail-sidebar-container{
+        position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    }
+}

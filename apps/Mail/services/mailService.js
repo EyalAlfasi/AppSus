@@ -17,7 +17,7 @@ function query() {
 function removeMail(mailId) {
     console.log('hi');
     mails = mails.filter(mail => mail.id !== mailId);
-    storageService.saveToStorage(MAILS_KEY,mails)
+    storageService.saveToStorage(MAILS_KEY, mails)
     return Promise.resolve();
 }
 
@@ -30,23 +30,23 @@ var mails = [
     {
         id: utilService.makeId(), senderEmailAddress: 'hello@spotify.com', senderName: 'Spotify Inc', subject: 'Spotify',
         body: 'Hey Eyal! here is a playlist just for you: https://open.spotify.com/playlist/6xGLprv9fmlMgeAMpW0x51',
-        isRead: false, sentAt: 1551133930594
+        isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, sentAt: 1551133930594
     },
     {
         id: utilService.makeId(), senderEmailAddress: 'daniel450ld@gmail.com', senderName: 'Daniel', subject: 'Hamburgers!',
-        body: 'Want to go grab a bite?', isRead: true, sentAt: 1551133930594
+        body: 'Want to go grab a bite?', isInbox: true, isRead: true, isStarred: true, isSent: false, isDraft: false, sentAt: 1551133930594
     },
     {
         id: utilService.makeId(), senderEmailAddress: 'zuckerberg@facebook.com', senderName: 'Mark Zuckerberg', subject: 'Salery - Decmber 2020',
         body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are a great employee!',
-        isRead: false, sentAt: 1551133930594
+        isInbox: true, isRead: false, isStarred: false, isSent: true, isDraft: false, sentAt: 1551133930594
     },
     {
         id: utilService.makeId(), senderEmailAddress: 'orthecop@gmail.com', senderName: 'Or the cop', subject: 'police',
-        body: 'Did you know I just became a cop?!?!?!', isRead: false, sentAt: 1551133930594
+        body: 'Did you know I just became a cop?!?!?!', isInbox: true, isRead: false, isStarred: true, isSent: false, isDraft: false, sentAt: 1551133930594
     },
     {
         id: utilService.makeId(), senderEmailAddress: 'evia@gmail.com', senderName: 'Eviatar', subject: 'Wassap?',
-        body: 'Pick up!', isRead: false, sentAt: 1551133930594
+        body: 'Pick up!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: true, sentAt: 1551133930594
     },
 ]
