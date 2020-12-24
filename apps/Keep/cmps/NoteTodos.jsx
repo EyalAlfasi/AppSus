@@ -1,5 +1,5 @@
-
-export function NoteTodos({ info }) {
+import {NotesBtn} from './NotesBtn.jsx'
+export function NoteTodos({ info, noteId ,onRemoveNote }) {
 
     return <label className="note note-todos">
         <h4>{info.label}</h4>
@@ -8,5 +8,6 @@ export function NoteTodos({ info }) {
                 <h3>{todo.txt} {todo.doneAt}</h3>
             </section>
         )}
+       <NotesBtn note={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
     </label>
 }

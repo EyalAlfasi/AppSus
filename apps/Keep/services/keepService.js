@@ -22,6 +22,7 @@ function getById(noteId) {
 }
 
 function remove(noteId) {
+
     notes = notes.filter(note => note.id !== noteId);
     _saveNotesToStorage()
     return Promise.resolve();

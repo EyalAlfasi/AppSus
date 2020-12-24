@@ -6,8 +6,9 @@
 }
 
 .note {
-    background-color: rgb(203, 247, 162);
+    background-color: rgb(255, 210, 151);
     text-align: center;
+    border-radius: 12px;
 }
 
 .note img {

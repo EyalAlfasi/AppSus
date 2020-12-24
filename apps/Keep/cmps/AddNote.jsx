@@ -52,7 +52,7 @@ export class AddNote extends React.Component {
         <i className="fa fa-list" onClick={() => this.onChangeType('NoteTodos', 'New list')}></i>
         <i className="fa fa-video-camera" onClick={() => this.onChangeType('NoteVideo', 'New video')}></i>
       </div>
-
+      
     </section>
   }
 }

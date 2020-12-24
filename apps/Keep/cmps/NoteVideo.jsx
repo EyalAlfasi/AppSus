@@ -1,4 +1,7 @@
-export function NoteVideo({ info, isPinned, style, id }) {
+import {NotesBtn} from './NotesBtn.jsx'
+
+
+export function NoteVideo({ info, noteId ,onRemoveNote}) {
   // check the embed thing
 
   return (
@@ -7,6 +10,7 @@ export function NoteVideo({ info, isPinned, style, id }) {
       <div className="video-container">
         <iframe width="300" height="300" src={info.url} ></iframe>
       </div>
+      <NotesBtn note={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
     </article>
   )
 }

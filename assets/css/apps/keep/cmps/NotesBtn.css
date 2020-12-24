@@ -1,0 +1,49 @@
+.edit-btns button:hover {
+    cursor: pointer;
+}
+
+.color-picker span {
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+}
+
+.color-picker :hover {
+    cursor: pointer;
+}
+
+.color-picker .blue {
+    background: rgba(41, 41, 224, 0.836);
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    color: rgba(41, 41, 224, 0.836);
+    margin-right: 3px;
+}
+
+.color-picker span.yellow {
+    background: rgb(243, 231, 56);
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    color: rgb(243, 231, 56);
+    margin-right: 3px;
+}
+
+.color-picker span.pink {
+    background: rgb(241, 88, 208);
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    color: rgb(241, 88, 208);
+    margin-right: 3px;
+}

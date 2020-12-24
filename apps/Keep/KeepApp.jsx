@@ -24,7 +24,6 @@ export class KeepApp extends React.Component {
     componentDidMount() {
         this.loadNotes();
     }
-    
 
 
     loadNotes = () => {
@@ -33,6 +32,7 @@ export class KeepApp extends React.Component {
             this.setState({ notes })
         })
     }
+
     onNoteTypeChange = (type) => {
 
         // setState({addBy:type})
@@ -41,6 +41,7 @@ export class KeepApp extends React.Component {
 
     onRemoveNote = (noteId) => {
         keepService.remove(noteId).then(() => {
+
             this.loadNotes()
         })
     }
@@ -48,24 +49,27 @@ export class KeepApp extends React.Component {
     onAddNote = (newNote) => {
         keepService.addNote(newNote)
             .then(() => this.loadNotes())
-            
+
     }
 
     render() {
         const { notes, answers } = this.state
 
-        return (<section onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'}>
+        return (<section >
             <div className="add-notes-container">
-               
+
                 {/* <i onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'} >MOOD</i> */}
                 <AddNote onAddNote={this.onAddNote} />
             </div>
             <section className="notes-container">
                 {notes.map((note, idx) => {
-                    return <DynamicKeepCmp key={idx} currCmp={note.type} info={note.info} />
+                    return (<DynamicKeepCmp key={idx} currCmp={note.type} info={note.info}
+                        noteId={note.id} onRemoveNote={this.onRemoveNote} />)
                 })}
+
             </section>
         </section>
         )
     }
 }
+// onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'}
