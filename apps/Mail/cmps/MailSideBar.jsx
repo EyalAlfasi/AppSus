@@ -4,12 +4,17 @@ import { MailContent } from "./MailContent.jsx"
 
 export class MailSideBar extends React.Component {
     state = {
+        open: false
     }
 
+    openSidebar = () => {
+        console.log(this.state.open);
+        this.setState({ open: !this.state.open })
+    }
 
     render() {
         const { onSetTab } = this.props
-        return <section className="mail-sidebar-container">
+        return <section className={`mail-sidebar-container ${this.state.open && 'open-sidebar'}`}>
             <button className="compose-btn"><i className="fa fa-plus"></i> Compose</button>
             <section className="mail-sidebar-tabs">
                 <ul>
@@ -19,6 +24,8 @@ export class MailSideBar extends React.Component {
                     <li onClick={() => onSetTab('isDraft')}><i className="fa fa-file-text"></i>Drafts</li>
                 </ul>
             </section>
+            <button className={`show-sidebar-btn fa ${this.state.open ? ' fa-angle-double-left' : 'fa-angle-double-right'}`}
+                onClick={this.openSidebar}></button>
         </section>
     }
 }
