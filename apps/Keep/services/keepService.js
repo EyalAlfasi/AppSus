@@ -72,8 +72,8 @@ function addNote(note) {
                 info: {
                     label: "How was it:",
                     todos: [
-                        { txt: "Do that", doneAt: 187111111 },
-                        { txt: "Do this", doneAt: 187111111 }
+                        { txt: "Do that", doneAt: new Date().toLocaleDateString() },
+                        { txt: "Do this", doneAt: new Date().toLocaleDateString() }
                     ]
                 },
                 style: {
@@ -125,7 +125,7 @@ var notes = [{
         type: "NoteImg",
         isPinned: true,
         info: {
-            url: "http://some-img/me",
+            url: "https://media0.giphy.com/media/KPaJ8b9Ztkty0/200.gif",
             title: "Me playing Mi"
         },
         style: {
@@ -139,8 +139,8 @@ var notes = [{
         info: {
             label: "How was it:",
             todos: [
-                { txt: "Do that", doneAt: 187111111 },
-                { txt: "Do this", doneAt: 187111111 }
+                { txt: "Do that", doneAt: '22/05/2020' },
+                { txt: "Do this", doneAt: '12/12/2020' }
             ]
         },
         style: {
