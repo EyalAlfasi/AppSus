@@ -1,29 +1,30 @@
-import { keepService } from './services/keepService.js'
-import { DynamicKeepCmp } from '../Keep/DynamicKeepCmp.jsx';
-import { AddNote } from '../Keep/AddNote.jsx';
+import { keepService } from '../services/keepService.js'
+import { DynamicKeepCmp } from './DynamicKeepCmp.jsx';
+import { AddNote } from './AddNote.jsx';
 
 export class KeepApp extends React.Component {
 
     state = {
         notes: [],
         addBy: null,
-        // isToggleOn: false
+        isToggleOn: false
     }
 
-    // onToggle = () => {
-    //     let toggleCopy = this.state.isToggleOn
-    //     toggleCopy = !toggleCopy
+    onToggle = () => {
+        let toggleCopy = this.state.isToggleOn
+        toggleCopy = !toggleCopy
 
-    //     this.setState({
-    //         isToggleOn: toggleCopy
-    //     })
-    //     console.log('string');
-    // }
+        this.setState({
+            isToggleOn: toggleCopy
+        })
+        console.log('string');
+    }
 
 
     componentDidMount() {
         this.loadNotes();
     }
+    
 
 
     loadNotes = () => {
@@ -53,8 +54,9 @@ export class KeepApp extends React.Component {
     render() {
         const { notes, answers } = this.state
 
-        return (<section>
+        return (<section onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'}>
             <div className="add-notes-container">
+               
                 {/* <i onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'} >MOOD</i> */}
                 <AddNote onAddNote={this.onAddNote} />
             </div>

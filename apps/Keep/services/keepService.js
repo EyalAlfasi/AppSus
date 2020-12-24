@@ -5,7 +5,8 @@ const KEEP_KEY = 'keepDB';
 
 export const keepService = {
     query,
-    addNote
+    addNote,
+    remove
 }
 
 
@@ -31,7 +32,7 @@ function _saveNotesToStorage() {
 }
 
 function addNote(note) {
-    note = { ...note }
+    note = {...note }
     console.log(note, 'addnote');
     var newNote;
     switch (note.type) {
@@ -79,17 +80,19 @@ function addNote(note) {
                 }
             }
             const todos = note.noteInfo.split(',')
-            todos.forEach((todo,idx) => {
-                newNote.info.todos[idx].txt=todo;
+            todos.forEach((todo, idx) => {
+                newNote.info.todos[idx].txt = todo;
             });
             break;
         case 'NoteVideo':
+            var url = note.noteInfo.replace('watch?v=', 'embed/')
             newNote = {
                 id: utilService.makeId(),
                 type: 'NoteVideo',
                 isPinned: false,
                 info: {
-                    url: note.info,
+                    url,
+
                     title: 'speacial title'
                 },
                 style: {
@@ -99,60 +102,60 @@ function addNote(note) {
             break;
 
     }
-console.log(newNote);
+    console.log(newNote);
     if (!notes) notes = [newNote]
     else notes.push(newNote)
     _saveNotesToStorage()
     return Promise.resolve()
 }
 var notes = [{
-    id: utilService.makeId(),
-    type: "NoteText",
-    isPinned: true,
-    info: {
-        txt: "Fullstack Me Baby!"
+        id: utilService.makeId(),
+        type: "NoteText",
+        isPinned: true,
+        info: {
+            txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
-    style: {
-        backgroundColor: "#00d"
-    }
-},
-{
-    id: utilService.makeId(),
-    type: "NoteImg",
-    isPinned: true,
-    info: {
-        url: "http://some-img/me",
-        title: "Me playing Mi"
+    {
+        id: utilService.makeId(),
+        type: "NoteImg",
+        isPinned: true,
+        info: {
+            url: "http://some-img/me",
+            title: "Me playing Mi"
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
-    style: {
-        backgroundColor: "#00d"
-    }
-},
-{
-    id: utilService.makeId(),
-    type: "NoteTodos",
-    isPinned: true,
-    info: {
-        label: "How was it:",
-        todos: [
-            { txt: "Do that", doneAt: 187111111 },
-            { txt: "Do this", doneAt: 187111111 }
-        ]
+    {
+        id: utilService.makeId(),
+        type: "NoteTodos",
+        isPinned: true,
+        info: {
+            label: "How was it:",
+            todos: [
+                { txt: "Do that", doneAt: 187111111 },
+                { txt: "Do this", doneAt: 187111111 }
+            ]
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
-    style: {
-        backgroundColor: "#00d"
+    {
+        id: utilService.makeId(),
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            url: 'https://www.youtube.com/watch?v=vmAaVgUzNh8',
+            title: 'speacial title'
+        },
+        style: {
+            backgroundColor: 'yellow'
+        }
     }
-},
-{
-    id: utilService.makeId(),
-    type: 'NoteVideo',
-    isPinned: false,
-    info: {
-        url: 'https://www.youtube.com/watch?v=vmAaVgUzNh8',
-        title: 'speacial title'
-    },
-    style: {
-        backgroundColor: 'yellow'
-    }
-}
 ];

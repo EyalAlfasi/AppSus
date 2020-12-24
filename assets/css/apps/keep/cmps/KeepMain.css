@@ -10,6 +10,14 @@
     text-align: center;
 }
 
-.note img{
+.note img {
     width: 100%;
+}
+
+.ON {
+    background-color: yellow;
+}
+
+.OFF {
+    background-color: rgb(255, 255, 255);
 }
