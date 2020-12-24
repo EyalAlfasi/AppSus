@@ -1,6 +1,7 @@
-.mail-icons{
+.mail-icons {
     align-self: flex-end;
 }
+
 .mail-icons i {
     background-color: #bbbbbb;
     border-radius: 50%;
@@ -19,12 +20,22 @@
     transform: translateY(-2px);
 }
 
-.mail-and-sidebar-container{
-    display: flex;
-    position: relative;
+.mail-and-sidebar-container {
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
-.mail-list-container{
-    flex-grow: 4;
+.mail-list-container {}
+
+
+@media(min-width:768px) {
+    .mail-and-sidebar-container {
+        grid-template-columns: 3fr 9fr;
+    }
 }
 
+@media(min-width:1024px) {
+    .mail-and-sidebar-container {
+        grid-template-columns: 2fr 10fr;
+    }
+}
