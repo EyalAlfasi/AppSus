@@ -1,4 +1,4 @@
-import { KeepService } from './services/keepService.js'
+import { keepService } from './services/keepService.js'
 import { DynamicKeepCmp } from '../Keep/DynamicKeepCmp.jsx';
 import { AddNote } from '../Keep/AddNote.jsx';
 
@@ -7,18 +7,18 @@ export class KeepApp extends React.Component {
     state = {
         notes: [],
         addBy: null,
-        isToggleOn: false
+        // isToggleOn: false
     }
 
-    onToggle = () => {
-        let toggleCopy = this.state.isToggleOn
-        toggleCopy = !toggleCopy
+    // onToggle = () => {
+    //     let toggleCopy = this.state.isToggleOn
+    //     toggleCopy = !toggleCopy
 
-        this.setState({
-            isToggleOn: toggleCopy
-        })
-        console.log('string');
-    }
+    //     this.setState({
+    //         isToggleOn: toggleCopy
+    //     })
+    //     console.log('string');
+    // }
 
 
     componentDidMount() {
@@ -27,7 +27,7 @@ export class KeepApp extends React.Component {
 
 
     loadNotes = () => {
-        KeepService.query().then(notes => {
+        keepService.query().then(notes => {
             console.log(notes);
             this.setState({ notes })
         })
@@ -39,31 +39,26 @@ export class KeepApp extends React.Component {
     }
 
     onRemoveNote = (noteId) => {
-        KeepService.remove(noteId).then(() => {
+        keepService.remove(noteId).then(() => {
             this.loadNotes()
         })
     }
 
     onAddNote = (newNote) => {
-        KeepService.addNote(newNote)
-        .then(notes => this.setState({ notes }))
-        console.log('');
+        keepService.addNote(newNote)
+            .then(() => this.loadNotes())
+            
     }
-   
+
     render() {
         const { notes, answers } = this.state
 
         return (<section>
-            <h2>I'm the KeepApp component</h2>
-            <i onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'} >MOOD</i>
-            {/* <input type="text" placeholder="whats on your mind.." /> */}
-            {/* <div className="btn">
-                <button onClick={this.onNoteTypeChange('text')}>todo</button>
-                <button onClick={this.onNoteTypeChange('url')}>img</button>
-                <button onClick={this.onNoteTypeChange('text')}>text</button>
-            </div> */}
-            <section className="notes-container">
+            <div className="add-notes-container">
+                {/* <i onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'} >MOOD</i> */}
                 <AddNote onAddNote={this.onAddNote} />
+            </div>
+            <section className="notes-container">
                 {notes.map((note, idx) => {
                     return <DynamicKeepCmp key={idx} currCmp={note.type} info={note.info} />
                 })}

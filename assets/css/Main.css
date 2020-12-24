@@ -8,5 +8,6 @@
 /* Components: */
 
 @import './apps/keep/cmps/KeepMain.css';
+@import './apps/keep/cmps/AddNote.css';
 @import './apps/mail/cmps/MailMain.css';
 @import './apps/mail/cmps/MailPreview.css';

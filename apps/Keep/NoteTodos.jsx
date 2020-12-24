@@ -8,6 +8,5 @@ export function NoteTodos({ info }) {
                 <h3>{todo.txt} {todo.doneAt}</h3>
             </section>
         )}
-        {/* <h3>{info.todos[0].txt} {info.todos[0].doneAt}</h3> */}
     </label>
 }
