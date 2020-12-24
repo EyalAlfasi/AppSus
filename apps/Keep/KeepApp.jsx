@@ -1,6 +1,6 @@
-import { keepService } from '../services/keepService.js'
-import { DynamicKeepCmp } from './DynamicKeepCmp.jsx';
-import { AddNote } from './AddNote.jsx';
+import { keepService } from './services/keepService.js'
+import { DynamicKeepCmp } from './cmps/DynamicKeepCmp.jsx';
+import { AddNote } from './cmps/AddNote.jsx';
 
 export class KeepApp extends React.Component {
 
