@@ -2,7 +2,9 @@ export const utilService = {
     makeId,
     getRandomIntInclusive,
     getShortText,
-    timeStampToDateTime
+    timeStampToDateTime,
+    getRandomColor,
+    getNameInitials
 }
 
 function makeId(length = 8) {
@@ -28,7 +30,21 @@ function getRandomIntInclusive(min, max) {
 
 function timeStampToDateTime(timeStamp) {
     const dateTimeObj = new Date(timeStamp)
-    const formattedDate = dateTimeObj.toLocaleString();
-    console.log(formattedDate);
+    const formattedDate = dateTimeObj.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     return formattedDate;
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function getNameInitials(name) {
+    name = name.split(' ');
+    const newName = name.map(word => word[0]).join('');
+    return newName;
 }
