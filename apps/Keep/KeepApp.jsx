@@ -6,8 +6,20 @@ export class KeepApp extends React.Component {
 
     state = {
         notes: [],
-        addBy: null
+        addBy: null,
+        isToggleOn: false
     }
+
+    onToggle = () => {
+        let toggleCopy = this.state.isToggleOn
+        toggleCopy = !toggleCopy
+
+        this.setState({
+            isToggleOn: toggleCopy
+        })
+        console.log('string');
+    }
+
 
     componentDidMount() {
         this.loadNotes();
@@ -26,30 +38,32 @@ export class KeepApp extends React.Component {
 
     }
 
-    onRemovePet = (petId) => {
-        petService.remove(petId).then(() => {
-            this.loadPets()
+    onRemoveNote = (noteId) => {
+        KeepService.remove(noteId).then(() => {
+            this.loadNotes()
         })
     }
 
-    addNote = (note) => {
-        keepService.addNote(note)
-            .then(notes => this.setState({ notes }))
+    onAddNote = (newNote) => {
+        KeepService.addNote(newNote)
+        .then(notes => this.setState({ notes }))
+        console.log('');
     }
-
+   
     render() {
         const { notes, answers } = this.state
 
         return (<section>
             <h2>I'm the KeepApp component</h2>
-            <input type="text" placeholder="whats on your mind.." />
-            <div className="btn">
+            <i onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'} >MOOD</i>
+            {/* <input type="text" placeholder="whats on your mind.." /> */}
+            {/* <div className="btn">
                 <button onClick={this.onNoteTypeChange('text')}>todo</button>
                 <button onClick={this.onNoteTypeChange('url')}>img</button>
                 <button onClick={this.onNoteTypeChange('text')}>text</button>
-            </div>
+            </div> */}
             <section className="notes-container">
-            <AddNote addNote={this.addNote}/>
+                <AddNote onAddNote={this.onAddNote} />
                 {notes.map((note, idx) => {
                     return <DynamicKeepCmp key={idx} currCmp={note.type} info={note.info} />
                 })}

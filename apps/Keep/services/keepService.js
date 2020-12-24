@@ -1,10 +1,11 @@
 import { utilService } from "../../../services/utilService.js"
 import { storageService } from "../../../services/storageService.js"
 
+const KEEP_KEY = 'keepDB';
 
 export const KeepService = {
     query,
-
+    addNote
 }
 
 var gNotes
@@ -86,5 +87,29 @@ function remove(noteId) {
 }
 
 function _saveNotesToStorage() {
-    storageService.saveToStorage(KEY, gNotes)
+    storageService.saveToStorage(KEEP_KEY, gNotes)
+}
+
+function addNote(note) {
+    note = {...note }
+    console.log(note, 'addnote');
+    const newNote = {
+        id: utilService.makeId(),
+        type: note.type,
+        isPinned: true,
+        info: {
+            txt: note.text
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
+    }
+
+
+
+
+
+    if (!gNotes || !gNotes.length === 0) gNotes = [note]
+    else gNotes.push(note)
+    _saveNotesToStorage()
 }
