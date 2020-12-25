@@ -1,6 +1,8 @@
 import { utilService } from "../../../services/utilService.js"
 import { mailService } from "../services/mailService.js"
 import { MailContent } from "./MailContent.jsx"
+import { MailFilter } from "../cmps/MailFilter.jsx"
+
 
 export class MailSideBar extends React.Component {
     state = {
@@ -15,6 +17,7 @@ export class MailSideBar extends React.Component {
     render() {
         const { onSetTab } = this.props
         return <section className={`mail-sidebar-container ${this.state.open && 'open-sidebar'}`}>
+            <MailFilter setFilter={this.onSetFilter} />
             <button className="compose-btn"><i className="fa fa-plus"></i> Compose</button>
             <section className="mail-sidebar-tabs">
                 <ul>
