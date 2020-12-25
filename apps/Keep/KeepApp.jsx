@@ -7,7 +7,12 @@ export class KeepApp extends React.Component {
     state = {
         notes: [],
         addBy: null,
-        isToggleOn: false
+        isToggleOn: false,
+        edit: {
+            note: null,
+            actionName: null
+        }
+
     }
 
     onToggle = () => {
@@ -33,12 +38,6 @@ export class KeepApp extends React.Component {
         })
     }
 
-    onNoteTypeChange = (type) => {
-
-        // setState({addBy:type})
-
-    }
-
     onRemoveNote = (noteId) => {
         keepService.remove(noteId).then(() => {
 
@@ -52,6 +51,19 @@ export class KeepApp extends React.Component {
 
     }
 
+    onUpdateNote = (noteId) => {
+        keepService.update(noteId).then(() => this.loadNotes)
+    }
+
+    onEditNotes = (note, actionName) => {
+        const noteCopy = this.state.note
+        const actionNameCopy = this.state.actionName
+        this.setState({ note: noteCopy, actionName: actionNameCopy })
+    }
+
+
+
+
     render() {
         const { notes, answers } = this.state
 
@@ -63,8 +75,8 @@ export class KeepApp extends React.Component {
             </div>
             <section className="notes-container">
                 {notes.map((note, idx) => {
-                    return (<DynamicKeepCmp key={idx} currCmp={note.type} info={note.info}
-                        noteId={note.id} onRemoveNote={this.onRemoveNote} />)
+                    return (<DynamicKeepCmp key={idx} note={note}
+                        onRemoveNote={this.onRemoveNote} />)
                 })}
 
             </section>

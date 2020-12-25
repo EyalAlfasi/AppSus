@@ -3,13 +3,13 @@ export function EditNotes() {
 
     switch (bgcColor) {
         case 'NoteText':
-            return <NoteText info={info} noteId={noteId} onRemoveNote={onRemoveNote} />
+            return 
         case 'NoteImg':
-            return <NoteImg info={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
+            return 
         case 'NoteTodos':
-            return <NoteTodos info={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
+            return 
         case 'NoteVideo':
-            return <NoteVideo info={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
+            return 
     }
     return <p>UNKNWON</p>
 }

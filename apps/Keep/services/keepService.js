@@ -6,9 +6,9 @@ const KEEP_KEY = 'keepDB';
 export const keepService = {
     query,
     addNote,
-    remove
-}
+    remove,
 
+}
 
 function query() {
     console.log(notes);
@@ -22,11 +22,25 @@ function getById(noteId) {
 }
 
 function remove(noteId) {
-
     notes = notes.filter(note => note.id !== noteId);
     _saveNotesToStorage()
     return Promise.resolve();
 }
+
+function save(note) {
+    if (note.id) { return _update(note); }
+}
+
+function _update(note) {
+    const noteToUpdate = {...note };
+
+    const noteIdx = noteCopy.findIndex(note => note.id === note.id);
+    noteCopy[noteIdx] = noteToUpdate;
+    notes = noteCopy;
+    _savePetsToStorage();
+    return Promise.resolve(noteToUpdate);
+}
+
 
 function _saveNotesToStorage() {
     storageService.saveToStorage(KEEP_KEY, notes)

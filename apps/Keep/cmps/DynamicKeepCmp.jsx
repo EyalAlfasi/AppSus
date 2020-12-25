@@ -4,17 +4,17 @@ import { NoteTodos } from './NoteTodos.jsx';
 import { NoteVideo } from './NoteVideo.jsx';
 
 
-export function DynamicKeepCmp({ currCmp, info, noteId, onRemoveNote }) {
+export function DynamicKeepCmp({ note, onRemoveNote }) {
 
-    switch (currCmp) {
+    switch (note.type) {
         case 'NoteText':
-            return <NoteText info={info} noteId={noteId} onRemoveNote={onRemoveNote} />
+            return <NoteText note={note} onRemoveNote={onRemoveNote} />
         case 'NoteImg':
-            return <NoteImg info={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
+            return <NoteImg note={note} onRemoveNote={onRemoveNote} />
         case 'NoteTodos':
-            return <NoteTodos info={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
+            return <NoteTodos note={note} onRemoveNote={onRemoveNote} />
         case 'NoteVideo':
-            return <NoteVideo info={info} noteId={noteId} onRemoveNote={onRemoveNote}/>
+            return <NoteVideo note={note} onRemoveNote={onRemoveNote} />
     }
     return <p>UNKNWON</p>
 }
