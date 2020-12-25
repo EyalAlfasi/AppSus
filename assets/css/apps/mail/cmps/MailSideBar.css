@@ -1,13 +1,12 @@
 .mail-sidebar-container {
-    background-color: #222222;
+    background-color: #333333;
     padding-top: 20px;
     padding: 0.5em;
-    height: calc(100vh - 90px);
     transition: transform 0.2s ease;
 }
 
 .compose-btn {
-    background-color: #333333;
+    background-color: #444444;
     color: #f9f9f9;
     border: none;
     font-size: 1.8em;
@@ -23,7 +22,7 @@
 
 .compose-btn:hover {
     color: #4de77b;
-    background-color: #444444;
+    background-color: #555555;
 }
 
 .mail-sidebar-container li {
@@ -41,26 +40,29 @@
 }
 
 .mail-sidebar-container li:hover {
-    background-color: #444444;
+    background-color: #555555;
 }
 
 .show-sidebar-btn {
     display: none;
 }
 
+.show-sidebar-btn:focus{
+    outline: none;
+}
+
 @media(max-width:1024px) {
     .mail-sidebar-container {
         font-size: 0.9rem;
     }
-
 }
 
 @media(max-width:768px) {
     .mail-sidebar-container {
         position: fixed;
-        bottom: 0;
+        top: 0;
         left: 0;
-        /* top: 0; */
+        height: 100vh;
         transform: translateX(-100%);
     }
     .open-sidebar {
@@ -69,7 +71,13 @@
     .show-sidebar-btn {
         display: inline-block;
         position: absolute;
-        bottom: 3%;
-        right: -20%;
+        bottom: 10%;
+        right: -25%;
+        border: none;
+        background-color: #4de77b;
+        color: #f9f9f9;
+        font-size: 2.5em;
+        width: 40px;
+        height: 40px;
     }
 }

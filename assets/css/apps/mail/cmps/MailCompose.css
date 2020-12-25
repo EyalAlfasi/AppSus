@@ -1,0 +1,83 @@
+.compose-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #f9f9f9;
+    width: 50%;
+    border: 3px solid #e2e2e2;
+    transform: translate(-50%, -50%);
+}
+
+.compose-container .compose-inputs {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.compose-container input, .compose-container textarea {
+    background-color: #f9f9f900;
+    border: none;
+}
+
+.compose-container input {
+    margin-bottom: 2em;
+    border-bottom: 1px solid #333333;
+}
+
+.compose-container input:focus, .compose-container textarea:focus {
+    outline: none;
+}
+
+.new-mail-title {
+    background-color: #333333;
+    color: #f9f9f9;
+    margin: 0;
+    padding: 8px;
+}
+
+.send-and-trash-container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: auto;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.send-and-trash-container i {
+    font-size: 2.5em;
+    transition: all 0.2s ease;
+    text-align: center;
+    padding: 10px;
+    border-radius: 50%;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.send-and-trash-container i:hover {
+    color: #f9f9f9;
+    background-color: #fa3939;
+}
+
+.send-and-trash-container button {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #f9f9f9;
+    background-color: #4de77b;
+    border: none;
+    padding: 2px 10px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.send-and-trash-container button:hover {
+    background-color: #7affa2;
+}
+
+@media(max-width:768px) {
+    .compose-container{
+        width: 80%;
+    }
+}

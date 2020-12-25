@@ -26,8 +26,9 @@
     font-size: 0.9rem;
 }
 
-.mail-list-container {}
-
+.mail-list-container {
+    height: calc(100vh - 90px);
+}
 
 @media(min-width:768px) {
     .mail-and-sidebar-container {

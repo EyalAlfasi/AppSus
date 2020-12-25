@@ -45,6 +45,6 @@ function getRandomColor() {
 
 function getNameInitials(name) {
     name = name.split(' ');
-    const newName = name.map(word => word[0]).join('');
+    const newName = name.map(word => word[0]).join('').toUpperCase();
     return newName;
 }
