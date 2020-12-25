@@ -51,15 +51,15 @@ export class KeepApp extends React.Component {
 
     }
 
-    onUpdateNote = (noteId) => {
-        keepService.update(noteId).then(() => this.loadNotes)
+    onNoteTextEdit = (noteInfo, noteId) => {
+        keepService.update(noteInfo, noteId).then(() => this.loadNotes)
     }
 
-    onEditNotes = (note, actionName) => {
-        const noteCopy = this.state.note
-        const actionNameCopy = this.state.actionName
-        this.setState({ note: noteCopy, actionName: actionNameCopy })
-    }
+    // onEditNotes = (note, actionName) => {
+    //     const noteCopy = this.state.note
+    //     const actionNameCopy = this.state.actionName
+    //     this.setState({ note: noteCopy, actionName: actionNameCopy })
+    // }
 
 
 
@@ -75,7 +75,7 @@ export class KeepApp extends React.Component {
             </div>
             <section className="notes-container">
                 {notes.map((note, idx) => {
-                    return (<DynamicKeepCmp key={idx} note={note}
+                    return (<DynamicKeepCmp onNoteTextEdit={this.onNoteTextEdit} key={idx} note={note}
                         onRemoveNote={this.onRemoveNote} />)
                 })}
 

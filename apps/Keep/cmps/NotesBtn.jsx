@@ -1,5 +1,5 @@
 import { keepService } from '../services/keepService.js'
-import { NotesUpdate } from '../cmps/NotesUpdate.jsx';
+import { NotesUpdate } from './NotesTextEdit.jsx';
 
 
 

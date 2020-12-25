@@ -7,6 +7,7 @@ export const keepService = {
     query,
     addNote,
     remove,
+    noteTextEdit
 
 }
 
@@ -16,7 +17,7 @@ function query() {
 
 }
 
-function getById(noteId) {
+function getNoteById(noteId) {
     const note = notes.find(note => note.id === noteId);
     return Promise.resolve(note);
 }
@@ -27,16 +28,10 @@ function remove(noteId) {
     return Promise.resolve();
 }
 
-function save(note) {
-    if (note.id) { return _update(note); }
-}
-
-function _update(note) {
-    const noteToUpdate = {...note };
-
-    const noteIdx = noteCopy.findIndex(note => note.id === note.id);
-    noteCopy[noteIdx] = noteToUpdate;
-    notes = noteCopy;
+function noteTextEdit(noteInfo, noteId) {
+    var noteCopy;
+    getNoteById(noteId).then(note=> noteCopy = {...note})
+    const noteIdx = notes.findIndex(note => note.id === noteId);
     _savePetsToStorage();
     return Promise.resolve(noteToUpdate);
 }
@@ -47,7 +42,7 @@ function _saveNotesToStorage() {
 }
 
 function addNote(note) {
-    note = {...note }
+    note = { ...note }
     console.log(note, 'addnote');
     var newNote;
     switch (note.type) {
@@ -124,53 +119,53 @@ function addNote(note) {
     return Promise.resolve()
 }
 var notes = [{
-        id: utilService.makeId(),
-        type: "NoteText",
-        isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!"
-        },
-        style: {
-            backgroundColor: "#00d"
-        }
+    id: utilService.makeId(),
+    type: "NoteText",
+    isPinned: true,
+    info: {
+        txt: "Fullstack Me Baby!"
     },
-    {
-        id: utilService.makeId(),
-        type: "NoteImg",
-        isPinned: true,
-        info: {
-            url: "https://media0.giphy.com/media/KPaJ8b9Ztkty0/200.gif",
-            title: "Me playing Mi"
-        },
-        style: {
-            backgroundColor: "#00d"
-        }
-    },
-    {
-        id: utilService.makeId(),
-        type: "NoteTodos",
-        isPinned: true,
-        info: {
-            label: "How was it:",
-            todos: [
-                { txt: "Do that", doneAt: '22/05/2020' },
-                { txt: "Do this", doneAt: '12/12/2020' }
-            ]
-        },
-        style: {
-            backgroundColor: "#00d"
-        }
-    },
-    {
-        id: utilService.makeId(),
-        type: 'NoteVideo',
-        isPinned: false,
-        info: {
-            url: 'https://www.youtube.com/watch?v=vmAaVgUzNh8',
-            title: 'speacial title'
-        },
-        style: {
-            backgroundColor: 'yellow'
-        }
+    style: {
+        backgroundColor: "#00d"
     }
+},
+{
+    id: utilService.makeId(),
+    type: "NoteImg",
+    isPinned: true,
+    info: {
+        url: "https://media0.giphy.com/media/KPaJ8b9Ztkty0/200.gif",
+        title: "Me playing Mi"
+    },
+    style: {
+        backgroundColor: "#00d"
+    }
+},
+{
+    id: utilService.makeId(),
+    type: "NoteTodos",
+    isPinned: true,
+    info: {
+        label: "How was it:",
+        todos: [
+            { txt: "Do that", doneAt: '22/05/2020' },
+            { txt: "Do this", doneAt: '12/12/2020' }
+        ]
+    },
+    style: {
+        backgroundColor: "#00d"
+    }
+},
+{
+    id: utilService.makeId(),
+    type: 'NoteVideo',
+    isPinned: false,
+    info: {
+        url: 'https://www.youtube.com/watch?v=vmAaVgUzNh8',
+        title: 'speacial title'
+    },
+    style: {
+        backgroundColor: 'yellow'
+    }
+}
 ];
