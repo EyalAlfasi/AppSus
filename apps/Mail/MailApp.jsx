@@ -1,7 +1,6 @@
 import { mailService } from "./services/mailService.js"
 import { MailSideBar } from "./cmps/MailSideBar.jsx"
 import { MailPreview } from "./cmps/MailPreview.jsx"
-import { MailFilter } from "./cmps/MailFilter.jsx"
 
 
 export class MailApp extends React.Component {
@@ -61,9 +60,8 @@ export class MailApp extends React.Component {
     render() {
         const mailsForDisplay = this.mailsForDisplay
         return <section className="mail-list-container">
-            <MailFilter setFilter={this.onSetFilter} />
             <section className="mail-and-sidebar-container">
-                <MailSideBar onSetTab={this.onSetTab} />
+                <MailSideBar onSetFilter={this.onSetFilter} onSetTab={this.onSetTab} />
                 <section className="mail-list-container">
                     {mailsForDisplay.map(mail => {
                         return <MailPreview key={mail.id} mail={mail} onRemove={this.onRemoveMail} />

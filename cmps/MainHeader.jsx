@@ -5,9 +5,14 @@ function _MainHeader() {
     return <header className="main-header-container">
         <div className="logo-container">
             <h2>AppSus</h2>
-            <img src="assets\img\logo-white-large.png"/>
+            <img src="assets\img\logo-white-large.png" />
         </div>
         <nav>
+            <div className="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul>
                 <li><NavLink activeClassName="nav-active" exact to="/">Home</NavLink></li>
                 <li><NavLink activeClassName="nav-active" to="/bookApp">Books</NavLink></li>

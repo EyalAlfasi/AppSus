@@ -23,6 +23,7 @@
 .mail-and-sidebar-container {
     display: grid;
     grid-template-columns: 1fr;
+    font-size: 0.9rem;
 }
 
 .mail-list-container {}
@@ -30,12 +31,13 @@
 
 @media(min-width:768px) {
     .mail-and-sidebar-container {
-        grid-template-columns: 3fr 9fr;
+        grid-template-columns: 200px 9fr;
+        font-size: 1rem;
     }
 }
 
 @media(min-width:1024px) {
     .mail-and-sidebar-container {
-        grid-template-columns: 2fr 10fr;
+        grid-template-columns: 250px 10fr;
     }
 }
