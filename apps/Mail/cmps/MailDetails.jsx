@@ -10,7 +10,7 @@ export function MailDetails({ mail, onRemove, openComposer }) {
 
     return <section className="mail-content-container">
         <h3>Subject: {mail.subject}</h3>
-        <div>
+        <div className="mail-sender-details">
             <h4>From: {mail.senderName}</h4>
             <h5>&lt;{mail.senderEmailAddress}&gt;</h5>
         </div>
@@ -19,7 +19,7 @@ export function MailDetails({ mail, onRemove, openComposer }) {
             <i className="fa fa-trash" onClick={() => onRemove(mail.id)}></i>
             {(!mail.isDraft && !mail.istrash) && <i className="fa fa-mail-reply"></i>}
             {(mail.isDraft) && <i className="fa fa-file-excel-o" onClick={() => unDraftMail()}></i>}
-            <i className="fa fa-plus"></i>
+            <Link to={`mail/${mail.id}`}><i className="fa fa-plus"></i></Link>
         </div>
     </section>
 }

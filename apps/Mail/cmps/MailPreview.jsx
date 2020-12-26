@@ -15,7 +15,6 @@ export class MailPreview extends React.Component {
     render() {
 
         const { mail, onRemove, openComposer } = this.props;
-        console.log(mail);
         return <section>
             <section className="mail-preview-container" onClick={this.toggleMailContent}>
                 <div className="sender-name-container">

@@ -30,9 +30,10 @@
     padding: 5px 8px;
 }
 
-.mail-content-container div {
+.mail-content-container div:first-child {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .mail-content-container div h5 {
@@ -42,7 +43,6 @@
 .mail-content-container span.icon {
     align-self: flex-end;
 }
-
 
 .sender-name-container h3 {
     display: inline-block;

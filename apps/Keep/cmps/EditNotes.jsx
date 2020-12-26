@@ -1,4 +1,4 @@
-import { keepService } from "../services/keepService"
+import { keepService } from "../services/keepService.js"
 
 
 export class EditNotes extends React.Component {

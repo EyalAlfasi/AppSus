@@ -2,8 +2,9 @@ import { mailService } from "./services/mailService.js"
 import { MailSideBar } from "./cmps/MailSideBar.jsx"
 import { MailPreview } from "./cmps/MailPreview.jsx"
 import { MailCompose } from "./cmps/MailCompose.jsx"
-
-
+import { MailDetails } from "./cmps/MailDetails.jsx";
+const Router = ReactRouterDOM.HashRouter;
+const { Route, Switch } = ReactRouterDOM;
 
 export class MailApp extends React.Component {
 
@@ -53,7 +54,6 @@ export class MailApp extends React.Component {
     get mailsForDisplay() {
         const { filterBy } = this.state;
         const filterRegex = new RegExp(filterBy.text, 'i');
-        console.log(this.state.currTab)
         return this.state.mails.filter(mail =>
             // String filters
             (filterRegex.test(mail.subject) || filterRegex.test(mail.body) ||
@@ -85,6 +85,9 @@ export class MailApp extends React.Component {
             <section className="mail-and-sidebar-container">
                 <MailSideBar openComposer={this.openComposer} onSetFilter={this.onSetFilter} onSetTab={this.onSetTab} />
                 <section className="mail-list-container">
+                    {/* <Router>
+                        <Route path="/mail/:mailId"><MailDetails openComposer={this.openComposer} onRemove={this.onRemoveMail} /></Route>
+                    </Router> */}
                     {mailsForDisplay.map(mail => {
                         return <MailPreview key={mail.id} openComposer={this.openComposer} mail={mail} onRemove={this.onRemoveMail} />
                     })}
