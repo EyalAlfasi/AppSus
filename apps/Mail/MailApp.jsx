@@ -10,6 +10,7 @@ export class MailApp extends React.Component {
 
     state = {
         mails: [],
+        selectedMail: {},
         filterBy: {
             read: false,
             text: ''
@@ -22,6 +23,9 @@ export class MailApp extends React.Component {
         this.loadMails();
     }
 
+    onSelectMail = (selectedMail) => {
+        this.setState({ selectedMail });
+    }
 
     loadMails = () => {
         mailService.query().then(mails => {
@@ -29,14 +33,27 @@ export class MailApp extends React.Component {
         });
     }
 
+    componentDidUpdate() {
+        console.log(this.state.selectedMail);
+    }
+
     openComposer = () => {
-        this.setState({ onComposeMode: true }, () => {
-            this.loadMails()
-        });
+        this.setState({ onComposeMode: true });
+    }
+
+    closeComposer = () => {
+        this.setState({ onComposeMode: false });
     }
 
     onRemoveMail = (mailId) => {
         mailService.removeMail(mailId).then(() => {
+            this.loadMails()
+        })
+    }
+
+    onStarMail = (ev,mailId) => {
+        ev.stopPropagation()
+        mailService.starMail(mailId).then(() => {
             this.loadMails()
         })
     }
@@ -85,15 +102,14 @@ export class MailApp extends React.Component {
             <section className="mail-and-sidebar-container">
                 <MailSideBar openComposer={this.openComposer} onSetFilter={this.onSetFilter} onSetTab={this.onSetTab} />
                 <section className="mail-list-container">
-                    {/* <Router>
-                        <Route path="/mail/:mailId"><MailDetails openComposer={this.openComposer} onRemove={this.onRemoveMail} /></Route>
-                    </Router> */}
                     {mailsForDisplay.map(mail => {
-                        return <MailPreview key={mail.id} openComposer={this.openComposer} mail={mail} onRemove={this.onRemoveMail} />
+                        return <MailPreview onStarMail={this.onStarMail} onSelectMail={this.onSelectMail} key={mail.id}
+                            openComposer={this.openComposer} mail={mail} onRemove={this.onRemoveMail} />
                     })}
                 </section>
             </section>
-            {this.state.onComposeMode && <MailCompose onSendMail={this.onSendMail} onRemove={this.onRemoveMail} />}
+            {this.state.onComposeMode && <MailCompose closeComposer={this.closeComposer}
+                onSendMail={this.onSendMail} onRemove={this.onRemoveMail} />}
         </section>
     }
 }
