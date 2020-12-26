@@ -1,25 +1,33 @@
 const { NavLink, withRouter } = ReactRouterDOM;
 
-function _MainHeader() {
+class _MainHeader extends React.Component {
 
-    return <header className="main-header-container">
-        <div className="logo-container">
-            <h2>AppSus</h2>
-            <img src="assets\img\logo-white-large.png" />
-        </div>
-        <nav>
-            <div className="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+    state = {
+        isNavOpen: false
+    }
+
+    render() {
+        return <header className="main-header-container">
+            <div >
+                <NavLink className="logo-container" activeClassName="nav-active" exact to="/"><h2>AppSus</h2>
+                    <img src="assets\img\logo-white-large.png" /></NavLink>
             </div>
-            <ul>
-                <li><NavLink activeClassName="nav-active" exact to="/">Home</NavLink></li>
-                <li><NavLink activeClassName="nav-active" to="/bookApp">Books</NavLink></li>
-                <li><NavLink activeClassName="nav-active" to="/mail">Mail</NavLink></li>
-                <li><NavLink activeClassName="nav-active" to="/keep">Keep</NavLink></li>
-            </ul>
-        </nav>;
+            <nav>
+                <i className="fa fa-th main-header-nav-menu" onClick={() => this.setState({ isNavOpen: !this.state.isNavOpen })}></i>
+                {this.state.isNavOpen && <ul>
+                    <li onClick={() => this.setState({ isNavOpen: false })}>
+                        <NavLink activeClassName="nav-active" to="/bookApp"><i className="fa fa-book"></i></NavLink>
+                    </li>
+                    <li onClick={() => this.setState({ isNavOpen: false })}>
+                        <NavLink activeClassName="nav-active" to="/mail"><i className="fa fa-envelope"></i></NavLink>
+                    </li>
+                    <li onClick={() => this.setState({ isNavOpen: false })}>
+                        <NavLink activeClassName="nav-active" to="/keep"><i className="fa fa-sticky-note"></i></NavLink>
+                    </li>
+                </ul>}
+
+            </nav>;
     </header>
+    }
 }
 export const MainHeader = withRouter(_MainHeader);
