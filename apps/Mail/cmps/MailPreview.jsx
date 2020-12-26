@@ -1,6 +1,8 @@
 import { utilService } from "../../../services/utilService.js"
 import { mailService } from "../services/mailService.js"
-import { MailContent } from "./MailContent.jsx"
+import { MailDetails } from "./MailDetails.jsx"
+
+
 export class MailPreview extends React.Component {
     state = {
         isMailOpen: false
@@ -11,12 +13,13 @@ export class MailPreview extends React.Component {
     }
 
     render() {
-        const { mail } = this.props;
+
+        const { mail, onRemove, openComposer } = this.props;
         console.log(mail);
         return <section>
             <section className="mail-preview-container" onClick={this.toggleMailContent}>
                 <div className="sender-name-container">
-                    <h3 style={{ backgroundColor: utilService.getRandomColor() }} >{utilService.getNameInitials(mail.senderName)}</h3>
+                    <h3 style={{ backgroundColor: mail.backgroundColor }} >{utilService.getNameInitials(mail.senderName)}</h3>
                 </div>
                 <div className="mail-preview-subject-container">
                     <h4>{mail.subject}</h4> <span>-</span>
@@ -26,7 +29,7 @@ export class MailPreview extends React.Component {
                     <h5>{utilService.timeStampToDateTime(mail.sentAt)}</h5>
                 </div>
             </section>
-            {this.state.isMailOpen && <MailContent onRemove={this.props.onRemove} mail={mail} />}
+            {this.state.isMailOpen && <MailDetails openComposer={openComposer} onRemove={onRemove} mail={mail} />}
         </section>
     }
 }
