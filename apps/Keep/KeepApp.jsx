@@ -48,12 +48,7 @@ export class KeepApp extends React.Component {
         this.loadNotes()
     }
 
-    // onSetBgc = (noteId) => {
-    //     keepService.setBgc(noteId)
-    //     this.loadNotes()
-    // }
-
-
+  
     render() {
         const { notes, edit } = this.state
 

@@ -28,10 +28,6 @@ function remove(noteId) {
 
 function pinnedNote(selectedNote) {
 
-    // var noteToChange = notes.filter(note => {
-    // return note.id === selectedNote.id
-
-    // })
     notes.forEach(note => {
         if (note.id === selectedNote.id) {
 
@@ -44,6 +40,15 @@ function pinnedNote(selectedNote) {
     _saveNotesToStorage()
 }
 
+function cloneNote(selectedNote) {
+
+    var newNote = {...selectedNote }
+    newNote.id = utilService.makeId()
+    notes.push(newNote)
+    _saveNotesToStorage()
+
+}
+
 
 function editNote(edit) {
     console.log(edit, 'lol');
@@ -53,6 +58,9 @@ function editNote(edit) {
             break;
         case 'Pinned':
             pinnedNote(edit.note)
+            break;
+        case 'Clone':
+            cloneNote(edit.note)
             break;
         default:
             edit.note.style.backgroundColor = edit.actionName
@@ -129,7 +137,6 @@ function addNote(note) {
                 isPinned: false,
                 info: {
                     url,
-
                     title: 'speacial title'
                 },
                 style: {
