@@ -2,23 +2,20 @@ import { NoteText } from './NoteText.jsx';
 import { NoteImg } from './NoteImg.jsx';
 import { NoteTodos } from './NoteTodos.jsx';
 import { NoteVideo } from './NoteVideo.jsx';
-import { NotesTextEdit } from './NotesTextEdit.jsx';
 
 
-export function DynamicKeepCmp({ note, onRemoveNote }) {
+
+export function DynamicKeepCmp({ note, onNoteEdit }) {
 
     switch (note.type) {
         case 'NoteText':
-            return <section>
-                <NoteText note={note} onRemoveNote={onRemoveNote} />
-                <NotesTextEdit />
-            </section>
+            return <NoteText note={note} onNoteEdit={onNoteEdit} />
         case 'NoteImg':
-            return <NoteImg note={note} onRemoveNote={onRemoveNote} />
+            return <NoteImg note={note} onNoteEdit={onNoteEdit} />
         case 'NoteTodos':
-            return <NoteTodos note={note} onRemoveNote={onRemoveNote} />
+            return <NoteTodos note={note} onNoteEdit={onNoteEdit} />
         case 'NoteVideo':
-            return <NoteVideo note={note} onRemoveNote={onRemoveNote} />
+            return <NoteVideo note={note} onNoteEdit={onNoteEdit} />
     }
     return <p>UNKNWON</p>
 }

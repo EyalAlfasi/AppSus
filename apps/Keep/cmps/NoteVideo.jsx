@@ -1,7 +1,7 @@
 import { NotesBtn } from './NotesBtn.jsx'
 
 
-export function NoteVideo({ note, onRemoveNote, onUpdateNote }) {
+export function NoteVideo({ note, onNoteEdit }) {
   // check the embed thing
 
   return (
@@ -10,7 +10,7 @@ export function NoteVideo({ note, onRemoveNote, onUpdateNote }) {
       <div className="video-container">
         <iframe width="300" height="300" src={note.info.url} ></iframe>
       </div>
-      <NotesBtn onUpdateNote={onUpdateNote} note={note}  onRemoveNote={onRemoveNote} />
+      <NotesBtn note={note} onNoteEdit={onNoteEdit} />
     </article>
   )
 }

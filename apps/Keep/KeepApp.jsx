@@ -1,35 +1,23 @@
 import { keepService } from './services/keepService.js'
 import { DynamicKeepCmp } from './cmps/DynamicKeepCmp.jsx';
 import { AddNote } from './cmps/AddNote.jsx';
+import { EditNotes } from './cmps/EditNotes.jsx';
 
 export class KeepApp extends React.Component {
 
     state = {
         notes: [],
         addBy: null,
-        isToggleOn: false,
         edit: {
             note: null,
-            actionName: null
+            actionName: ''
         }
 
     }
 
-    onToggle = () => {
-        let toggleCopy = this.state.isToggleOn
-        toggleCopy = !toggleCopy
-
-        this.setState({
-            isToggleOn: toggleCopy
-        })
-        console.log('string');
-    }
-
-
     componentDidMount() {
         this.loadNotes();
     }
-
 
     loadNotes = () => {
         keepService.query().then(notes => {
@@ -38,11 +26,13 @@ export class KeepApp extends React.Component {
         })
     }
 
-    onRemoveNote = (noteId) => {
-        keepService.remove(noteId).then(() => {
+    onNoteEdit = (note, actionName) => {
+        
+        const editCopy = { ...this.state.edit }
+        editCopy.note = note
+        editCopy.actionName = actionName
+        this.setState({ edit: editCopy })
 
-            this.loadNotes()
-        })
     }
 
     onAddNote = (newNote) => {
@@ -51,37 +41,48 @@ export class KeepApp extends React.Component {
 
     }
 
-    onNoteTextEdit = (noteInfo, noteId) => {
-        keepService.update(noteInfo, noteId).then(() => this.loadNotes)
+    afterEdit = () => {
+        const editCopy = { ...this.state.edit }
+        editCopy.note = null
+        this.setState({ edit: editCopy })
+        this.loadNotes()
     }
 
-    // onEditNotes = (note, actionName) => {
-    //     const noteCopy = this.state.note
-    //     const actionNameCopy = this.state.actionName
-    //     this.setState({ note: noteCopy, actionName: actionNameCopy })
+    // onSetBgc = (noteId) => {
+    //     keepService.setBgc(noteId)
+    //     this.loadNotes()
     // }
 
 
-
-
     render() {
-        const { notes, answers } = this.state
+        const { notes, edit } = this.state
 
         return (<section >
             <div className="add-notes-container">
-
-                {/* <i onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'} >MOOD</i> */}
                 <AddNote onAddNote={this.onAddNote} />
             </div>
             <section className="notes-container">
+                <section>
+                <h2>Pinned Notes</h2>
                 {notes.map((note, idx) => {
-                    return (<DynamicKeepCmp onNoteTextEdit={this.onNoteTextEdit} key={idx} note={note}
-                        onRemoveNote={this.onRemoveNote} />)
+                    if (note.isPinned) {
+                        return (<DynamicKeepCmp key={note.id} note={note} onNoteEdit={this.onNoteEdit} />)
+                    }
                 })}
+                </section>
+                <section>
+                <h2>UnPinned Notes</h2>
+                {notes.map((note, idx) => {
+                    if (!note.isPinned) {
+                        return (<DynamicKeepCmp key={note.id} note={note} onNoteEdit={this.onNoteEdit} />)
 
+                    }
+                })}
+                </section>
+                {edit.note && <EditNotes edit={edit} afterEdit={this.afterEdit} />}
             </section>
+           
         </section>
         )
     }
 }
-// onClick={this.onToggle} className={this.state.isToggleOn ? 'ON' : 'OFF'}

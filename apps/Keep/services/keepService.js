@@ -6,13 +6,12 @@ const KEEP_KEY = 'keepDB';
 export const keepService = {
     query,
     addNote,
-    remove,
-    noteTextEdit
+    editNote,
 
 }
 
 function query() {
-    console.log(notes);
+
     return Promise.resolve(notes);
 
 }
@@ -25,15 +24,43 @@ function getNoteById(noteId) {
 function remove(noteId) {
     notes = notes.filter(note => note.id !== noteId);
     _saveNotesToStorage()
-    return Promise.resolve();
 }
 
-function noteTextEdit(noteInfo, noteId) {
-    var noteCopy;
-    getNoteById(noteId).then(note=> noteCopy = {...note})
-    const noteIdx = notes.findIndex(note => note.id === noteId);
-    _savePetsToStorage();
-    return Promise.resolve(noteToUpdate);
+function pinnedNote(selectedNote) {
+
+    // var noteToChange = notes.filter(note => {
+    // return note.id === selectedNote.id
+
+    // })
+    notes.forEach(note => {
+        if (note.id === selectedNote.id) {
+
+            note.isPinned = !note.isPinned
+        }
+        return note
+    })
+
+    // noteToChange[0].isPinned = !noteToChange[0].isPinned
+    _saveNotesToStorage()
+}
+
+
+function editNote(edit) {
+    console.log(edit, 'lol');
+    switch (edit.actionName) {
+        case 'Remove':
+            remove(edit.note.id)
+            break;
+        case 'Pinned':
+            pinnedNote(edit.note)
+            break;
+        default:
+            edit.note.style.backgroundColor = edit.actionName
+            break;
+
+    }
+    _saveNotesToStorage()
+    return Promise.resolve()
 }
 
 
@@ -42,7 +69,7 @@ function _saveNotesToStorage() {
 }
 
 function addNote(note) {
-    note = { ...note }
+    note = {...note }
     console.log(note, 'addnote');
     var newNote;
     switch (note.type) {
@@ -50,12 +77,12 @@ function addNote(note) {
             newNote = {
                 id: utilService.makeId(),
                 type: "NoteText",
-                isPinned: false,
+                isPinned: true,
                 info: {
                     txt: note.noteInfo
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: note.style
                 }
             }
             break;
@@ -69,7 +96,7 @@ function addNote(note) {
                     title: "Me playing Mi"
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: note.style
                 }
             }
             break;
@@ -86,7 +113,7 @@ function addNote(note) {
                     ]
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: note.style
                 }
             }
             const todos = note.noteInfo.split(',')
@@ -106,7 +133,7 @@ function addNote(note) {
                     title: 'speacial title'
                 },
                 style: {
-                    backgroundColor: 'yellow'
+                    backgroundColor: note.style
                 }
             }
             break;
@@ -119,53 +146,53 @@ function addNote(note) {
     return Promise.resolve()
 }
 var notes = [{
-    id: utilService.makeId(),
-    type: "NoteText",
-    isPinned: true,
-    info: {
-        txt: "Fullstack Me Baby!"
+        id: utilService.makeId(),
+        type: "NoteText",
+        isPinned: true,
+        info: {
+            txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "#E6E6FA"
+        }
     },
-    style: {
-        backgroundColor: "#00d"
-    }
-},
-{
-    id: utilService.makeId(),
-    type: "NoteImg",
-    isPinned: true,
-    info: {
-        url: "https://media0.giphy.com/media/KPaJ8b9Ztkty0/200.gif",
-        title: "Me playing Mi"
+    {
+        id: utilService.makeId(),
+        type: "NoteImg",
+        isPinned: true,
+        info: {
+            url: "https://media0.giphy.com/media/KPaJ8b9Ztkty0/200.gif",
+            title: "Me playing Mi"
+        },
+        style: {
+            backgroundColor: "#E0FFFF"
+        }
     },
-    style: {
-        backgroundColor: "#00d"
-    }
-},
-{
-    id: utilService.makeId(),
-    type: "NoteTodos",
-    isPinned: true,
-    info: {
-        label: "How was it:",
-        todos: [
-            { txt: "Do that", doneAt: '22/05/2020' },
-            { txt: "Do this", doneAt: '12/12/2020' }
-        ]
+    {
+        id: utilService.makeId(),
+        type: "NoteTodos",
+        isPinned: true,
+        info: {
+            label: "How was it:",
+            todos: [
+                { txt: "Do that", doneAt: '22/05/2020' },
+                { txt: "Do this", doneAt: '12/12/2020' }
+            ]
+        },
+        style: {
+            backgroundColor: "	#AFEEEE"
+        }
     },
-    style: {
-        backgroundColor: "#00d"
+    {
+        id: utilService.makeId(),
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            url: 'https://www.youtube.com/watch?v=vmAaVgUzNh8',
+            title: 'speacial title'
+        },
+        style: {
+            backgroundColor: '	#AFEEEE'
+        }
     }
-},
-{
-    id: utilService.makeId(),
-    type: 'NoteVideo',
-    isPinned: false,
-    info: {
-        url: 'https://www.youtube.com/watch?v=vmAaVgUzNh8',
-        title: 'speacial title'
-    },
-    style: {
-        backgroundColor: 'yellow'
-    }
-}
 ];

@@ -1,12 +1,15 @@
 import {NotesBtn} from './NotesBtn.jsx'
 
-export function NoteText({ note ,onRemoveNote, onUpdateNote}) {
+
+export function NoteText({ note ,onNoteEdit}) {
+
+
    
-    return ( <section className="note note-text">
+    return ( <section className="note note-text" style={{backgroundColor: note.style.backgroundColor}} >
        <h1>{note.info.txt}</h1> 
       
 
-       <NotesBtn onUpdateNote={onUpdateNote} note={note} onRemoveNote={onRemoveNote}/>
+       <NotesBtn  note={note} onNoteEdit={onNoteEdit}/>
     </section>)
         {/* <input placeholder={info.label} onChange={(ev) => {
             // onAns(ev.target.value)
@@ -14,3 +17,5 @@ export function NoteText({ note ,onRemoveNote, onUpdateNote}) {
     
 
 }
+
+// {{backgroundColor : `${note.style}`}}

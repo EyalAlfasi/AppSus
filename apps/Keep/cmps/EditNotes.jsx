@@ -1,15 +1,29 @@
+import { keepService } from "../services/keepService"
 
-export function EditNotes() {
 
-    switch (bgcColor) {
-        case 'NoteText':
-            return 
-        case 'NoteImg':
-            return 
-        case 'NoteTodos':
-            return 
-        case 'NoteVideo':
-            return 
+export class EditNotes extends React.Component {
+
+    componentDidMount() {
+        this.onEdit()
+
     }
-    return <p>UNKNWON</p>
+
+    onEdit = () =>{
+        const {edit} = this.props
+        if(edit.actionName === 'open-modal') this.setState({showUpdate: !this.state.showUpdate})
+        else{
+        keepService.editNote(edit)
+        this.props.afterEdit()
+        }
+    }
+
+
+        render(){
+    return (
+        <section>
+            
+        </section>
+
+    )
+}
 }
