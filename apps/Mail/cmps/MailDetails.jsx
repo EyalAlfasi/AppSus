@@ -1,5 +1,12 @@
 // import { utilService } from "../../../services/utilService.js"
-export function MailContent({ mail, onRemove }) {
+const { Link } = ReactRouterDOM;
+
+
+export function MailDetails({ mail, onRemove, openComposer }) {
+
+    function unDraftMail() {
+        openComposer(openComposer)
+    }
 
     return <section className="mail-content-container">
         <h3>Subject: {mail.subject}</h3>
@@ -10,7 +17,10 @@ export function MailContent({ mail, onRemove }) {
         <h5>{mail.body}</h5>
         <div className="mail-icons">
             <i className="fa fa-trash" onClick={() => onRemove(mail.id)}></i>
-            <i className="fa fa-mail-reply"></i>
+            {(!mail.isDraft && !mail.istrash) && <i className="fa fa-mail-reply"></i>}
+            {(mail.isDraft) && <i className="fa fa-file-excel-o" onClick={() => unDraftMail()}></i>}
+            <i className="fa fa-plus"></i>
         </div>
     </section>
 }
+

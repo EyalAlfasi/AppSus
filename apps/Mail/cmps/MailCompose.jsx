@@ -26,8 +26,9 @@ export class MailCompose extends React.Component {
                     onChange={this.handleInputs} placeholder="Message:" cols="30" rows="10"></textarea>
             </div>
             <div className="send-and-trash-container">
-                <button className="send-btn" onClick={() => onSendMail(this.state.newMailContent)}>Send</button>
-                <i className="fa fa-trash" onClick={() => onRemove(mailId)}></i>
+                <button className="send-btn" onClick={() => onSendMail(this.state.newMailContent, false)}>Send</button>
+                {/* <i className="fa fa-trash" onClick={() => onRemove(mailId)}></i> */}
+                <i className="fa fa-file-text" onClick={() => onSendMail(this.state.newMailContent, true)}></i>
             </div>
         </section>
     }

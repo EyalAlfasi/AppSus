@@ -9,7 +9,6 @@ export class MailApp extends React.Component {
 
     state = {
         mails: [],
-        selectedMail: [],
         filterBy: {
             read: false,
             text: ''
@@ -30,11 +29,19 @@ export class MailApp extends React.Component {
     }
 
     openComposer = () => {
-        this.setState({ onComposeMode: true });
+        this.setState({ onComposeMode: true }, () => {
+            this.loadMails()
+        });
     }
 
     onRemoveMail = (mailId) => {
         mailService.removeMail(mailId).then(() => {
+            this.loadMails()
+        })
+    }
+
+    onMailUndraft = (mailId) => {
+        mailService.unDraftMail(mailId).then(() => {
             this.loadMails()
         })
     }
@@ -64,10 +71,10 @@ export class MailApp extends React.Component {
         this.setState({ currTab: tab });
     }
 
-    onSendMail = (inputs) => {
-        if (!inputs['subject'] || !inputs['message']) return
+    onSendMail = (inputs, isDraft) => {
+        if ((!inputs['subject'] || !inputs['message']) && !isDraft) return
         this.setState({ onComposeMode: false });
-        mailService.sendMail(inputs).then(() => {
+        mailService.sendMail(inputs, isDraft).then(() => {
             this.loadMails()
         })
     }
@@ -79,7 +86,7 @@ export class MailApp extends React.Component {
                 <MailSideBar openComposer={this.openComposer} onSetFilter={this.onSetFilter} onSetTab={this.onSetTab} />
                 <section className="mail-list-container">
                     {mailsForDisplay.map(mail => {
-                        return <MailPreview key={mail.id} mail={mail} onRemove={this.onRemoveMail} />
+                        return <MailPreview key={mail.id} openComposer={this.openComposer} mail={mail} onRemove={this.onRemoveMail} />
                     })}
                 </section>
             </section>

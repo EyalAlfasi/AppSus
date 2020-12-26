@@ -9,7 +9,7 @@ export class MailFilter extends React.Component {
 
     handleChange = (ev) => {
         const callback = () => {
-            this.props.setFilter(this.state.filterBy);
+            this.props.onSetFilter(this.state.filterBy);
         };
         
         const filterBy = {...this.state.filterBy}
@@ -20,9 +20,10 @@ export class MailFilter extends React.Component {
 
     render() {
         return <section className="mails-filter">
+            <i className="fa fa-search"></i>
             <input type="text" name="text"
                 value={this.state.filterBy.text}
-                placeholder="Filter by name, subject, and Email address"
+                placeholder="Search..."
                 autoComplete="off"
                 onChange={this.handleChange} />
         </section>;
