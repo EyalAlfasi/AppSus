@@ -31,7 +31,9 @@ function sendMail({ subject, message }, isDraft) {
     const newMail = {
         id: utilService.makeId(), senderEmailAddress: 'eyalalf@gmail.com', senderName: 'Eyal Alfasi', subject: subject,
         body: message,
-        isInbox: isDraft ? false : true, isRead: false, isStarred: false, isSent: isDraft ? false : true, isDraft: isDraft ? true : false, isTrash: false, sentAt: Date.now()
+        isInbox: isDraft ? false : true, isRead: false, isStarred: false, isSent: isDraft ? false : true,
+        isDraft: isDraft ? true : false, isTrash: false, sentAt: Date.now(),
+        backgroundColor: utilService.getRandomColor()
     }
     gMails.unshift(newMail);
     return Promise.resolve();
@@ -81,7 +83,7 @@ function getMailTypesCount() {
         mail.isInbox && mailCounts.inbox++
         mail.isStarred && mailCounts.starred++
         mail.isSent && mailCounts.sent++
-        mail.isDraft && mailCounts.drafts++
+        mail.isDraft && mailCounts.draft++
         mail.isTrash && mailCounts.trash++
     });
     return mailCounts;
