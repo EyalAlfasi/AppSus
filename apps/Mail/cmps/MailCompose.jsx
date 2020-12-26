@@ -7,6 +7,16 @@ export class MailCompose extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const { mail } = this.props;
+        if (!mail) return
+        else {
+            const { subject } = mail
+            const { message } = mail
+            this.setState({ subject, message })
+        }
+    }
+
     handleInputs = (ev) => {
         console.log(ev.target.value);
         const inputs = { ...this.state.newMailContent }
@@ -15,8 +25,9 @@ export class MailCompose extends React.Component {
     }
 
     render() {
-        const { onRemove, mailId, onSendMail } = this.props
+        const { onRemove, mailId, onSendMail, closeComposer } = this.props
         return <section className="compose-container">
+            <i className="fa fa-close close-composer" onClick={() => closeComposer()}></i>
             <h2 className="new-mail-title">New Message</h2>
             <div className="compose-inputs">
                 <input type="text" name="compose-to" placeholder="To:" />

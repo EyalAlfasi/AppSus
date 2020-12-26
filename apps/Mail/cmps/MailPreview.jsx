@@ -8,15 +8,18 @@ export class MailPreview extends React.Component {
         isMailOpen: false
     }
 
-    toggleMailContent = () => {
+    selectMail = () => {
         this.setState({ isMailOpen: !this.state.isMailOpen })
+        this.props.onSelectMail(this.props.mail)
+
     }
 
     render() {
 
-        const { mail, onRemove, openComposer } = this.props;
+        const { mail, onRemove, openComposer, onStarMail } = this.props;
         return <section>
-            <section className="mail-preview-container" onClick={this.toggleMailContent}>
+            <section className="mail-preview-container" onClick={this.selectMail}>
+                <i className={mail.isStarred ? 'fa fa-star' : 'fa fa-star-o'} onClick={(ev) => onStarMail(ev,mail.id)}></i>
                 <div className="sender-name-container">
                     <h3 style={{ backgroundColor: mail.backgroundColor }} >{utilService.getNameInitials(mail.senderName)}</h3>
                 </div>
@@ -28,7 +31,7 @@ export class MailPreview extends React.Component {
                     <h5>{utilService.timeStampToDateTime(mail.sentAt)}</h5>
                 </div>
             </section>
-            {this.state.isMailOpen && <MailDetails openComposer={openComposer} onRemove={onRemove} mail={mail} />}
+            {this.state.isMailOpen && <MailDetails mail={mail} openComposer={openComposer} onRemove={onRemove} mail={mail} />}
         </section>
     }
 }

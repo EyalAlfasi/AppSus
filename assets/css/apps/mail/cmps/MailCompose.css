@@ -8,6 +8,16 @@
     transform: translate(-50%, -50%);
 }
 
+.close-composer{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5em;
+    padding: 10px 10px 0 0;
+    color: #f9f9f9;
+    cursor: pointer;
+}
+
 .compose-container .compose-inputs {
     padding: 15px;
     display: flex;
@@ -57,12 +67,11 @@
 }
 
 .send-and-trash-container i:hover {
-    color: #f9f9f9;
-    background-color: #fa3939;
+    color: #464646;
 }
 
 .send-and-trash-container button {
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-weight: 700;
     color: #f9f9f9;
     background-color: #4de77b;

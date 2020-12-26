@@ -51,6 +51,12 @@
     top: 120px;
 }
 
+.main-header-container h4{
+    color: #f9f9f9;
+    text-align: center;
+    font-size: 16px;
+}
+
 .main-header-container ul li a {
     display: inline-block;
     color: #f9f9f9;

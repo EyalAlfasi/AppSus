@@ -6,7 +6,8 @@ export const mailService = {
     getMailById,
     sendMail,
     unDraftMail,
-    getMailTypesCount
+    getMailTypesCount,
+    starMail
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -36,6 +37,7 @@ function sendMail({ subject, message }, isDraft) {
         backgroundColor: utilService.getRandomColor()
     }
     gMails.unshift(newMail);
+    storageService.saveToStorage(MAILS_KEY, gMails)
     return Promise.resolve();
 }
 
@@ -49,6 +51,13 @@ function removeMail(mailId) {
     return Promise.resolve();
 }
 
+function starMail(mailId) {
+    const mailIdx = gMails.findIndex(mail => mail.id === mailId);
+    gMails[mailIdx].isStarred = !gMails[mailIdx].isStarred
+    storageService.saveToStorage(MAILS_KEY, gMails)
+    return Promise.resolve();
+}
+
 function trashMail(mailId) {
     const mailIdx = gMails.findIndex(mail => mail.id === mailId);
     const mail = gMails[mailIdx]
@@ -57,6 +66,7 @@ function trashMail(mailId) {
     mail.isSent = false;
     mail.isDraft = false;
     mail.isStarred = false;
+    storageService.saveToStorage(MAILS_KEY, gMails)
 }
 
 function unDraftMail(mailId) {
@@ -64,6 +74,7 @@ function unDraftMail(mailId) {
     const mail = gMails[mailIdx]
     mail.isDraft = false;
     mail.isInbox = true;
+    storageService.saveToStorage(MAILS_KEY, gMails)
 }
 
 function getMailById(mailId) {

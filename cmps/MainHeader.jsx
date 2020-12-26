@@ -16,13 +16,13 @@ class _MainHeader extends React.Component {
                 <i className="fa fa-th main-header-nav-menu" onClick={() => this.setState({ isNavOpen: !this.state.isNavOpen })}></i>
                 {this.state.isNavOpen && <ul>
                     <li onClick={() => this.setState({ isNavOpen: false })}>
-                        <NavLink activeClassName="nav-active" to="/bookApp"><i className="fa fa-book"></i></NavLink>
+                        <NavLink activeClassName="nav-active" to="/bookApp"><i className="fa fa-book"></i><h4>Books</h4></NavLink>
                     </li>
                     <li onClick={() => this.setState({ isNavOpen: false })}>
-                        <NavLink activeClassName="nav-active" to="/mail"><i className="fa fa-envelope"></i></NavLink>
+                        <NavLink activeClassName="nav-active" to="/mail"><i className="fa fa-envelope"></i><h4>Mail</h4></NavLink>
                     </li>
                     <li onClick={() => this.setState({ isNavOpen: false })}>
-                        <NavLink activeClassName="nav-active" to="/keep"><i className="fa fa-sticky-note"></i></NavLink>
+                        <NavLink activeClassName="nav-active" to="/keep"><i className="fa fa-sticky-note"></i><h4>Keep</h4></NavLink>
                     </li>
                 </ul>}
 
