@@ -9,8 +9,10 @@ export class MailPreview extends React.Component {
     }
 
     selectMail = () => {
+        const { mail, onSelectMail, onMarkread } = this.props
         this.setState({ isMailOpen: !this.state.isMailOpen })
-        this.props.onSelectMail(this.props.mail)
+        onSelectMail(mail);
+        onMarkread(mail.id);
 
     }
 
@@ -18,8 +20,8 @@ export class MailPreview extends React.Component {
 
         const { mail, onRemove, openComposer, onStarMail } = this.props;
         return <section>
-            <section className="mail-preview-container" onClick={this.selectMail}>
-                <i className={mail.isStarred ? 'fa fa-star' : 'fa fa-star-o'} onClick={(ev) => onStarMail(ev,mail.id)}></i>
+            <section className={`mail-preview-container ${(mail.isRead) ? 'preview-read' : 'preview-unread'}`} onClick={this.selectMail}>
+                <i className={mail.isStarred ? 'fa fa-star' : 'fa fa-star-o'} onClick={(ev) => onStarMail(ev, mail.id)}></i>
                 <div className="sender-name-container">
                     <h3 style={{ backgroundColor: mail.backgroundColor }} >{utilService.getNameInitials(mail.senderName)}</h3>
                 </div>

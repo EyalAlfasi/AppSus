@@ -18,7 +18,6 @@ export class MailCompose extends React.Component {
     }
 
     handleInputs = (ev) => {
-        console.log(ev.target.value);
         const inputs = { ...this.state.newMailContent }
         inputs[ev.target.name] = ev.target.value
         this.setState({ newMailContent: inputs })

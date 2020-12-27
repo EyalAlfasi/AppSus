@@ -19,6 +19,7 @@ function makeId(length = 8) {
 }
 
 function getShortText(text, length) {
+    if (text.length < length) return text
     return text.substring(0, length) + '...'
 }
 

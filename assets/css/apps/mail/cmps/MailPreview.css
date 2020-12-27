@@ -1,11 +1,18 @@
 .mail-preview-container {
     padding: 5px 8px;
-    background-color: #f5f5f5;
     display: grid;
-    grid-template-columns: 1.5fr 3fr 9fr 2fr;
+    grid-template-columns: 1.5fr 3fr 9fr 3fr;
     align-items: center;
     min-height: 50px;
     cursor: pointer;
+}
+
+.preview-unread {
+    background-color: #f5f5f5;
+}
+
+.preview-read {
+    background-color: #dbdbdb;
 }
 
 .mail-preview-subject-container {
@@ -20,10 +27,11 @@
     display: none;
 }
 
-.mail-preview-container .fa{
+.mail-preview-container .fa {
     font-size: 1.2em;
 }
-.mail-preview-container .fa-star{
+
+.mail-preview-container .fa-star {
     color: #face09;
 }
 
@@ -64,7 +72,7 @@
 
 @media(min-width:768px) {
     .mail-preview-container {
-        grid-template-columns: 0.5fr 1fr 9fr 2fr;
+        grid-template-columns: 0.5fr 1fr 9fr 1.5fr;
     }
     .mail-preview-container div span {
         display: inline;

@@ -7,7 +7,8 @@ export const mailService = {
     sendMail,
     unDraftMail,
     getMailTypesCount,
-    starMail
+    starMail,
+    markRead
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -54,6 +55,13 @@ function removeMail(mailId) {
 function starMail(mailId) {
     const mailIdx = gMails.findIndex(mail => mail.id === mailId);
     gMails[mailIdx].isStarred = !gMails[mailIdx].isStarred
+    storageService.saveToStorage(MAILS_KEY, gMails)
+    return Promise.resolve();
+}
+
+function markRead(mailId) {
+    const mailIdx = gMails.findIndex(mail => mail.id === mailId);
+    gMails[mailIdx].isRead = true
     storageService.saveToStorage(MAILS_KEY, gMails)
     return Promise.resolve();
 }
@@ -109,26 +117,323 @@ function _getDemoMails() {
             backgroundColor: utilService.getRandomColor()
         },
         {
+            id: utilService.makeId(), senderEmailAddress: 'mankal@google.com', senderName: 'Mankal google', subject: 'Job offer',
+            body: 'Hey there Eyal, this is mankal google, I can`t think of someone better then you to replace me at being mankal',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 173133939263,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
             id: utilService.makeId(), senderEmailAddress: 'daniel450ld@gmail.com', senderName: 'Daniel', subject: 'Hamburgers!',
             body: 'Want to go grab a bite?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
             backgroundColor: utilService.getRandomColor()
         },
         {
             id: utilService.makeId(), senderEmailAddress: 'zuckerberg@facebook.com', senderName: 'Mark Zuckerberg', subject: 'Salery - Decmber 2020',
-            body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are a great employee!',
+            body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are my best employee!',
             isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
             backgroundColor: utilService.getRandomColor()
         },
         {
-            id: utilService.makeId(), senderEmailAddress: 'orthecop@gmail.com', senderName: 'Or the cop', subject: 'police',
-            body: 'Did you know I just became a cop?!?!?!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            id: utilService.makeId(), senderEmailAddress: 'ortab@gmail.com', senderName: 'Or Hashoter', subject: 'Ani shoter',
+            body: 'Just so you know, Ani shoter', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
             backgroundColor: utilService.getRandomColor()
         },
         {
             id: utilService.makeId(), senderEmailAddress: 'evia@gmail.com', senderName: 'Eviatar', subject: 'Wassap?',
             body: 'Pick up!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
             backgroundColor: utilService.getRandomColor()
-        }
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'sparrow@gmail.com', senderName: 'Jack Sparrow', subject: 'Arrr',
+            body: 'Jib fire in the hole bilged on her anchor wherry maroon capstan ahoy scuppers warp spirits. Bring a spring upon her cable Shiver me timbers lee black jack heave to knave run a shot across the bow Jolly Roger black spot tack. Doubloon gabion Sea Legs clap of thunder weigh anchor Gold Road pressgang Jack Ketch splice the main brace crimp.',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'roger@gmail.com', senderName: 'Roger Federer', subject: 'Tennis',
+            body: 'Wanna go hit some balls? just don`t go too hard on me😉', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'omeradam@gmail.com', senderName: 'Omer Adam', subject: 'Ya gever',
+            body: 'Ata ba le dubai?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'friend@gmail.com', senderName: 'A friend', subject: 'Just a joke',
+            body: 'Did you hear about the claustrophobic astronaut?  He just needed a little space 😂😂😂', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'hello@spotify.com', senderName: 'Spotify Inc', subject: 'Spotify',
+            body: 'Hey Eyal! here is a playlist just for you: https://open.spotify.com/playlist/6xGLprv9fmlMgeAMpW0x51',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'mankal@google.com', senderName: 'Mankal google', subject: 'Job offer',
+            body: 'Hey there Eyal, this is mankal google, I can`t think of someone better then you to replace me at being mankal',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 173133939263,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'daniel450ld@gmail.com', senderName: 'Daniel', subject: 'Hamburgers!',
+            body: 'Want to go grab a bite?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'zuckerberg@facebook.com', senderName: 'Mark Zuckerberg', subject: 'Salery - Decmber 2020',
+            body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are my best employee!',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'ortab@gmail.com', senderName: 'Or Hashoter', subject: 'Ani shoter',
+            body: 'Just so you know, Ani shoter', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'evia@gmail.com', senderName: 'Eviatar', subject: 'Wassap?',
+            body: 'Pick up!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'sparrow@gmail.com', senderName: 'Jack Sparrow', subject: 'Arrr',
+            body: 'Jib fire in the hole bilged on her anchor wherry maroon capstan ahoy scuppers warp spirits. Bring a spring upon her cable Shiver me timbers lee black jack heave to knave run a shot across the bow Jolly Roger black spot tack. Doubloon gabion Sea Legs clap of thunder weigh anchor Gold Road pressgang Jack Ketch splice the main brace crimp.',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'roger@gmail.com', senderName: 'Roger Federer', subject: 'Tennis',
+            body: 'Wanna go hit some balls? just don`t go too hard on me😉', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'omeradam@gmail.com', senderName: 'Omer Adam', subject: 'Ya gever',
+            body: 'Ata ba le dubai?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'friend@gmail.com', senderName: 'A friend', subject: 'Just a joke',
+            body: 'Did you hear about the claustrophobic astronaut?  He just needed a little space 😂😂😂', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'hello@spotify.com', senderName: 'Spotify Inc', subject: 'Spotify',
+            body: 'Hey Eyal! here is a playlist just for you: https://open.spotify.com/playlist/6xGLprv9fmlMgeAMpW0x51',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'mankal@google.com', senderName: 'Mankal google', subject: 'Job offer',
+            body: 'Hey there Eyal, this is mankal google, I can`t think of someone better then you to replace me at being mankal',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 173133939263,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'daniel450ld@gmail.com', senderName: 'Daniel', subject: 'Hamburgers!',
+            body: 'Want to go grab a bite?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'zuckerberg@facebook.com', senderName: 'Mark Zuckerberg', subject: 'Salery - Decmber 2020',
+            body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are my best employee!',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'ortab@gmail.com', senderName: 'Or Hashoter', subject: 'Ani shoter',
+            body: 'Just so you know, Ani shoter', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'evia@gmail.com', senderName: 'Eviatar', subject: 'Wassap?',
+            body: 'Pick up!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'sparrow@gmail.com', senderName: 'Jack Sparrow', subject: 'Arrr',
+            body: 'Jib fire in the hole bilged on her anchor wherry maroon capstan ahoy scuppers warp spirits. Bring a spring upon her cable Shiver me timbers lee black jack heave to knave run a shot across the bow Jolly Roger black spot tack. Doubloon gabion Sea Legs clap of thunder weigh anchor Gold Road pressgang Jack Ketch splice the main brace crimp.',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'roger@gmail.com', senderName: 'Roger Federer', subject: 'Tennis',
+            body: 'Wanna go hit some balls? just don`t go too hard on me😉', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'omeradam@gmail.com', senderName: 'Omer Adam', subject: 'Ya gever',
+            body: 'Ata ba le dubai?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'friend@gmail.com', senderName: 'A friend', subject: 'Just a joke',
+            body: 'Did you hear about the claustrophobic astronaut?  He just needed a little space 😂😂😂', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'hello@spotify.com', senderName: 'Spotify Inc', subject: 'Spotify',
+            body: 'Hey Eyal! here is a playlist just for you: https://open.spotify.com/playlist/6xGLprv9fmlMgeAMpW0x51',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'mankal@google.com', senderName: 'Mankal google', subject: 'Job offer',
+            body: 'Hey there Eyal, this is mankal google, I can`t think of someone better then you to replace me at being mankal',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 173133939263,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'daniel450ld@gmail.com', senderName: 'Daniel', subject: 'Hamburgers!',
+            body: 'Want to go grab a bite?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'zuckerberg@facebook.com', senderName: 'Mark Zuckerberg', subject: 'Salery - Decmber 2020',
+            body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are my best employee!',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'ortab@gmail.com', senderName: 'Or Hashoter', subject: 'Ani shoter',
+            body: 'Just so you know, Ani shoter', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'evia@gmail.com', senderName: 'Eviatar', subject: 'Wassap?',
+            body: 'Pick up!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'sparrow@gmail.com', senderName: 'Jack Sparrow', subject: 'Arrr',
+            body: 'Jib fire in the hole bilged on her anchor wherry maroon capstan ahoy scuppers warp spirits. Bring a spring upon her cable Shiver me timbers lee black jack heave to knave run a shot across the bow Jolly Roger black spot tack. Doubloon gabion Sea Legs clap of thunder weigh anchor Gold Road pressgang Jack Ketch splice the main brace crimp.',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'roger@gmail.com', senderName: 'Roger Federer', subject: 'Tennis',
+            body: 'Wanna go hit some balls? just don`t go too hard on me😉', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'omeradam@gmail.com', senderName: 'Omer Adam', subject: 'Ya gever',
+            body: 'Ata ba le dubai?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'friend@gmail.com', senderName: 'A friend', subject: 'Just a joke',
+            body: 'Did you hear about the claustrophobic astronaut?  He just needed a little space 😂😂😂', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'hello@spotify.com', senderName: 'Spotify Inc', subject: 'Spotify',
+            body: 'Hey Eyal! here is a playlist just for you: https://open.spotify.com/playlist/6xGLprv9fmlMgeAMpW0x51',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'mankal@google.com', senderName: 'Mankal google', subject: 'Job offer',
+            body: 'Hey there Eyal, this is mankal google, I can`t think of someone better then you to replace me at being mankal',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 173133939263,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'daniel450ld@gmail.com', senderName: 'Daniel', subject: 'Hamburgers!',
+            body: 'Want to go grab a bite?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'zuckerberg@facebook.com', senderName: 'Mark Zuckerberg', subject: 'Salery - Decmber 2020',
+            body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are my best employee!',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'ortab@gmail.com', senderName: 'Or Hashoter', subject: 'Ani shoter',
+            body: 'Just so you know, Ani shoter', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'evia@gmail.com', senderName: 'Eviatar', subject: 'Wassap?',
+            body: 'Pick up!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'sparrow@gmail.com', senderName: 'Jack Sparrow', subject: 'Arrr',
+            body: 'Jib fire in the hole bilged on her anchor wherry maroon capstan ahoy scuppers warp spirits. Bring a spring upon her cable Shiver me timbers lee black jack heave to knave run a shot across the bow Jolly Roger black spot tack. Doubloon gabion Sea Legs clap of thunder weigh anchor Gold Road pressgang Jack Ketch splice the main brace crimp.',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'roger@gmail.com', senderName: 'Roger Federer', subject: 'Tennis',
+            body: 'Wanna go hit some balls? just don`t go too hard on me😉', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'omeradam@gmail.com', senderName: 'Omer Adam', subject: 'Ya gever',
+            body: 'Ata ba le dubai?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'friend@gmail.com', senderName: 'A friend', subject: 'Just a joke',
+            body: 'Did you hear about the claustrophobic astronaut?  He just needed a little space 😂😂😂', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'hello@spotify.com', senderName: 'Spotify Inc', subject: 'Spotify',
+            body: 'Hey Eyal! here is a playlist just for you: https://open.spotify.com/playlist/6xGLprv9fmlMgeAMpW0x51',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'mankal@google.com', senderName: 'Mankal google', subject: 'Job offer',
+            body: 'Hey there Eyal, this is mankal google, I can`t think of someone better then you to replace me at being mankal',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 173133939263,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'daniel450ld@gmail.com', senderName: 'Daniel', subject: 'Hamburgers!',
+            body: 'Want to go grab a bite?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'zuckerberg@facebook.com', senderName: 'Mark Zuckerberg', subject: 'Salery - Decmber 2020',
+            body: 'Hey Eyal, I just sent you this months`s paycheck for 100,000$ you are my best employee!',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'ortab@gmail.com', senderName: 'Or Hashoter', subject: 'Ani shoter',
+            body: 'Just so you know, Ani shoter', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'evia@gmail.com', senderName: 'Eviatar', subject: 'Wassap?',
+            body: 'Pick up!', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'sparrow@gmail.com', senderName: 'Jack Sparrow', subject: 'Arrr',
+            body: 'Jib fire in the hole bilged on her anchor wherry maroon capstan ahoy scuppers warp spirits. Bring a spring upon her cable Shiver me timbers lee black jack heave to knave run a shot across the bow Jolly Roger black spot tack. Doubloon gabion Sea Legs clap of thunder weigh anchor Gold Road pressgang Jack Ketch splice the main brace crimp.',
+            isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'roger@gmail.com', senderName: 'Roger Federer', subject: 'Tennis',
+            body: 'Wanna go hit some balls? just don`t go too hard on me😉', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'omeradam@gmail.com', senderName: 'Omer Adam', subject: 'Ya gever',
+            body: 'Ata ba le dubai?', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
+        {
+            id: utilService.makeId(), senderEmailAddress: 'friend@gmail.com', senderName: 'A friend', subject: 'Just a joke',
+            body: 'Did you hear about the claustrophobic astronaut?  He just needed a little space 😂😂😂', isInbox: true, isRead: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, sentAt: 1551133930594,
+            backgroundColor: utilService.getRandomColor()
+        },
     ]
 
     return mails;

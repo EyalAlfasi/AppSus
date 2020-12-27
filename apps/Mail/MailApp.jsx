@@ -33,10 +33,6 @@ export class MailApp extends React.Component {
         });
     }
 
-    componentDidUpdate() {
-        console.log(this.state.selectedMail);
-    }
-
     openComposer = () => {
         this.setState({ onComposeMode: true });
     }
@@ -45,13 +41,19 @@ export class MailApp extends React.Component {
         this.setState({ onComposeMode: false });
     }
 
+    onMarkread = (mailId) => {
+        mailService.markRead(mailId).then(() => {
+            this.loadMails()
+        })
+    }
+
     onRemoveMail = (mailId) => {
         mailService.removeMail(mailId).then(() => {
             this.loadMails()
         })
     }
 
-    onStarMail = (ev,mailId) => {
+    onStarMail = (ev, mailId) => {
         ev.stopPropagation()
         mailService.starMail(mailId).then(() => {
             this.loadMails()
@@ -84,7 +86,6 @@ export class MailApp extends React.Component {
     }
 
     onSetTab = (tab) => {
-        console.log(tab);
         this.setState({ currTab: tab });
     }
 
@@ -103,8 +104,9 @@ export class MailApp extends React.Component {
                 <MailSideBar openComposer={this.openComposer} onSetFilter={this.onSetFilter} onSetTab={this.onSetTab} />
                 <section className="mail-list-container">
                     {mailsForDisplay.map(mail => {
-                        return <MailPreview onStarMail={this.onStarMail} onSelectMail={this.onSelectMail} key={mail.id}
-                            openComposer={this.openComposer} mail={mail} onRemove={this.onRemoveMail} />
+                        return <MailPreview onMarkread={this.onMarkread} onStarMail={this.onStarMail}
+                            onSelectMail={this.onSelectMail} key={mail.id} openComposer={this.openComposer}
+                            mail={mail} onRemove={this.onRemoveMail} />
                     })}
                 </section>
             </section>

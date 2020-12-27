@@ -10,7 +10,6 @@ export class MailSideBar extends React.Component {
     }
 
     openSidebar = () => {
-        console.log(this.state.open);
         this.setState({ open: !this.state.open })
     }
 
