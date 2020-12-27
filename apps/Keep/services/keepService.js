@@ -122,7 +122,7 @@ function addNote(note) {
                 isPinned: false,
                 isMarked: false,
                 info: {
-                    label: "How was it:",
+                    label: "TODO or not TODO?",
                     todos: [
                         { txt: "Do that", doneAt: new Date().toLocaleDateString() },
                         // { txt: "Do this", doneAt: new Date().toLocaleDateString() }
@@ -174,6 +174,33 @@ var notes = [{
     },
     {
         id: utilService.makeId(),
+        type: "NoteTodos",
+        isPinned: true,
+        isMarked: false,
+        info: {
+            label: "Todo List",
+            todos: [
+                { txt: "Sprint 3", doneAt: '26/12/2020' },
+                // { txt: "Do this", doneAt: '12/12/2020' }
+            ]
+        },
+        style: {
+            backgroundColor: "	#AFEEEE"
+        }
+    },
+    {
+        id: utilService.makeId(),
+        type: "NoteText",
+        isPinned: true,
+        info: {
+            txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "#E6E6FA"
+        }
+    },
+    {
+        id: utilService.makeId(),
         type: "NoteImg",
         isPinned: true,
         info: {
@@ -205,11 +232,51 @@ var notes = [{
         type: 'NoteVideo',
         isPinned: false,
         info: {
-            url: 'https://www.youtube.com/watch?v=vmAaVgUzNh8',
+            url: 'https://www.youtube.com/embed/BRrrEjAvXkE',
             title: 'speacial title'
         },
         style: {
             backgroundColor: '	#AFEEEE'
         }
-    }
+    },
+    {
+        id: utilService.makeId(),
+        type: "NoteImg",
+        isPinned: true,
+        info: {
+            url: "https://miro.medium.com/max/1634/0*r6iQzljiuJavVxRM",
+            title: "Eat, Sleep, Repeat"
+        },
+        style: {
+            backgroundColor: "#E0FFFF"
+        }
+    },
+    {
+        id: utilService.makeId(),
+        type: "NoteTodos",
+        isPinned: true,
+        isMarked: false,
+        info: {
+            label: "How was it:",
+            todos: [
+                { txt: "Do this", doneAt: '22/05/2020' },
+                // { txt: "", doneAt: '12/12/2020' }
+            ]
+        },
+        style: {
+            backgroundColor: "	#AFEEEE"
+        }
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            url: 'https://www.youtube.com/embed/UIQ03GXhD2E',
+            title: 'speacial title'
+        },
+        style: {
+            backgroundColor: '	#AFEEEE'
+        }
+    },
 ];

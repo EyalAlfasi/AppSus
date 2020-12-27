@@ -19,11 +19,12 @@ export class NotesFilter extends React.Component {
 
     render() {
         return <section className="notes-filter">
-            <input type="text" name="text"
+            <input className="filter-search" type="text" name="text"
                 value={this.state.filterBy.text}
                 placeholder="Look Me Up.."
                 autoComplete="off"
                 onChange={this.handleChange} />
+                <i className="fa fa-search"></i>
         </section>;
     }
 

@@ -10,9 +10,9 @@ export class NotesBtn extends React.Component {
         displayColors: false
     }
 
-    onColorEdit =(color) =>{
-        this.setState({displayColors: false},()=>{
-            this.props.onNoteEdit(this.props.note , color)
+    onColorEdit = (color) => {
+        this.setState({ displayColors: false }, () => {
+            this.props.onNoteEdit(this.props.note, color)
         })
     }
 
@@ -20,12 +20,12 @@ export class NotesBtn extends React.Component {
         const { note, onNoteEdit } = this.props
         return (
             <section className="edit-btns">
-                <button onClick={()=> onNoteEdit(note,'Pinned')}>pin</button>
-                <button onClick={()=> onNoteEdit(note,'Clone')}><i class="fal fa-clone"></i></button>
-                <button onClick={() => {this.setState({displayColors : !this.state.displayColors})}}>color</button>
-                <button onClick={() => onNoteEdit(note, 'Remove')} >DEL</button>
-                <button onClick={() => onNoteEdit(note, 'open-modal')} className="update">update</button>
-                { this.state.displayColors && <ColorPalette onColorEdit={this.onColorEdit}/>}
+                <button onClick={() => onNoteEdit(note, 'Pinned')}><i className="fa fa-map-pin"></i></button>
+                <button onClick={() => onNoteEdit(note, 'Clone')}><i className="fa fa-clone"></i></button>
+                <button onClick={() => { this.setState({ displayColors: !this.state.displayColors }) }}><i className="fa fa-paint-brush"></i></button>
+                <button onClick={() => onNoteEdit(note, 'Remove')} ><i className="fa fa-close"></i></button>
+                {/* <button onClick={() => onNoteEdit(note, 'open-modal')} className="update">update</button> */}
+                { this.state.displayColors && <ColorPalette onColorEdit={this.onColorEdit} />}
             </section>
         )
     }

@@ -5,13 +5,13 @@ export function NoteVideo({ note, onNoteEdit }) {
   // check the embed thing
 
   return (
-    <article className="note-video" >
+    <section className="note " >
+      <div className="video-container" style={{ backgroundColor: note.style.backgroundColor }}>
       <h2>{note.info.title}</h2>
-      <div className="video-container">
-        <iframe width="300" height="300" src={note.info.url} ></iframe>
+        <iframe width="260" height="130" src={note.info.url} ></iframe>
+        <NotesBtn note={note} onNoteEdit={onNoteEdit} />
       </div>
-      <NotesBtn note={note} onNoteEdit={onNoteEdit} />
-    </article>
+    </section>
   )
 }
 

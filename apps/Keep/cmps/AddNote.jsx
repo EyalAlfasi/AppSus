@@ -42,17 +42,18 @@ export class AddNote extends React.Component {
         ev.preventDefault()
         this.props.onAddNote(this.state.newCmp)
       }}>
-      <input value={noteInfo} placeholder={this.state.txt} type="text" name="note"
-        onChange={this.onInputChange} />
-        <button type="submit">Add</button>
-        </form>
+        <textarea  value={noteInfo} placeholder={this.state.txt} type="text" name="note"
+        onChange={this.onInputChange}rows="2" cols="40"></textarea>
+      {/* <input value={noteInfo} placeholder={this.state.txt} type="text" name="note"
+        onChange={this.onInputChange} /> */}
+        <button type="submit"><i className="fa fa-plus"></i></button> 
       <div className="add-note-btns-container">
         <i name="" className="fa fa-sticky-note" onClick={() => this.onChangeType('NoteText', 'Take a note...')}></i>
         <i className="fa fa-image" onClick={() => this.onChangeType('NoteImg', 'New image')}></i>
         <i className="fa fa-list" onClick={() => this.onChangeType('NoteTodos', 'New list')}></i>
         <i className="fa fa-video-camera" onClick={() => this.onChangeType('NoteVideo', 'New video')}></i>
       </div>
-      
+      </form>
     </section>
   }
 }

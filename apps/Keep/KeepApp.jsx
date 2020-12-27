@@ -83,17 +83,17 @@ export class KeepApp extends React.Component {
             <div className="filter-by-container">
                 <NotesFilter setFilter={this.onSetFilter} NotesForDisplay={NotesForDisplay} />
             </div>
-            <section className="notes-container">
-                <section>
-                    <h2>Pinned Notes</h2>
+            <section >
+                <section className="notes-container">
+                    {/* <h2>Pinned Notes</h2> */}
                     {NotesForDisplay.map((note, idx) => {
                         if (note.isPinned) {
                             return (<DynamicKeepCmp key={note.id} note={note} onNoteEdit={this.onNoteEdit} />)
                         }
                     })}
                 </section>
-                <section>
-                    <h2>UnPinned Notes</h2>
+                <section className="notes-container un-pinned">
+                    {/* <h2>UnPinned Notes</h2> */}
                     {NotesForDisplay.map((note, idx) => {
                         if (!note.isPinned) {
                             return (<DynamicKeepCmp key={note.id} note={note} onNoteEdit={this.onNoteEdit} />)

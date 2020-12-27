@@ -1,3 +1,25 @@
-.edit-btns button:hover {
-    cursor: pointer;
+.edit-btns button {
+    background-color: transparent;
+    border: none;
+    margin-right: 18px;
+}
+
+
+/* .edit-btns :hover button {
+    visibility: visible;
+    background-color: #d3d3d3;
+    transform: translateY(-2px);
+} */
+
+.edit-btns button {
+    transition: 0.3s;
+    visibility: hidden;
+    color: #333333;
+}
+
+.edit-btns:hover button {
+    transition: 0.3s;
+    visibility: visible;
+    color: #444444;
+    font-size: 16px;
 }
