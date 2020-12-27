@@ -22,8 +22,6 @@
     flex-direction: column-reverse;
 }
 
-.home-keep-container div:first-child {}
-
 .home-mail-container img, .home-keep-container img {
     width: 100%;
 }

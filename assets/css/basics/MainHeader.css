@@ -49,6 +49,7 @@
     width: 200px;
     position: absolute;
     top: 120px;
+    z-index: 10;
 }
 
 .main-header-container h4{
