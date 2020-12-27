@@ -4,7 +4,7 @@ export function AppSusHome() {
     return <section className="home-container">
         <div className="home-mail-container">
             <div>
-                <img src="../assets/img/home-mail.png" />
+                <img src="./assets/img/home-mail.png" />
             </div>
             <div>
                 <h2>Welcome to a new era of mailing</h2>
@@ -25,7 +25,7 @@ export function AppSusHome() {
                 <Link to="/keep"><button>AppSus Keep</button></Link>
             </div>
             <div>
-                <img src="../assets/img/home-keep.png" />
+                <img src="./assets/img/home-keep.png" />
             </div>
         </div>
     </section>
