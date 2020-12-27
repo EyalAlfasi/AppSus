@@ -17,7 +17,7 @@ export function AppSusHome() {
         </div>
         <div className="home-keep-container">
             <div>
-                <h2>Just rememberd something?</h2>
+                <h2>Something came up to mind?</h2>
                 <p>Indroducing AppSus Keep! The new way of keeping what comes to your mind,
                 in a variaty of exciting ways! Text, To-do list, videos, Images, and even more! &#40;soon&#41;.
                 Go have a look!
