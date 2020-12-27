@@ -11,7 +11,6 @@ export const keepService = {
 }
 
 function query() {
-
     return Promise.resolve(notes);
 
 }
@@ -29,14 +28,17 @@ function remove(noteId) {
 function pinnedNote(selectedNote) {
 
     notes.forEach(note => {
-        if (note.id === selectedNote.id) {
+            if (note.id === selectedNote.id) {
+                note.isPinned = !note.isPinned
+            }
+            return note
+        })
+        // noteToChange[0].isPinned = !noteToChange[0].isPinned
+    _saveNotesToStorage()
+}
 
-            note.isPinned = !note.isPinned
-        }
-        return note
-    })
-
-    // noteToChange[0].isPinned = !noteToChange[0].isPinned
+function toggleTodoMark(selectedNote) {
+    selectedNote.isMarked = !selectedNote.isMarked
     _saveNotesToStorage()
 }
 
@@ -50,6 +52,8 @@ function cloneNote(selectedNote) {
 }
 
 
+
+
 function editNote(edit) {
     console.log(edit, 'lol');
     switch (edit.actionName) {
@@ -61,6 +65,9 @@ function editNote(edit) {
             break;
         case 'Clone':
             cloneNote(edit.note)
+            break;
+        case 'Mark':
+            toggleTodoMark(edit.note)
             break;
         default:
             edit.note.style.backgroundColor = edit.actionName
@@ -113,15 +120,17 @@ function addNote(note) {
                 id: utilService.makeId(),
                 type: "NoteTodos",
                 isPinned: false,
+                isMarked: false,
                 info: {
                     label: "How was it:",
                     todos: [
                         { txt: "Do that", doneAt: new Date().toLocaleDateString() },
-                        { txt: "Do this", doneAt: new Date().toLocaleDateString() }
+                        // { txt: "Do this", doneAt: new Date().toLocaleDateString() }
                     ]
                 },
                 style: {
-                    backgroundColor: note.style
+                    backgroundColor: note.style,
+
                 }
             }
             const todos = note.noteInfo.split(',')
@@ -179,11 +188,12 @@ var notes = [{
         id: utilService.makeId(),
         type: "NoteTodos",
         isPinned: true,
+        isMarked: false,
         info: {
             label: "How was it:",
             todos: [
                 { txt: "Do that", doneAt: '22/05/2020' },
-                { txt: "Do this", doneAt: '12/12/2020' }
+                // { txt: "Do this", doneAt: '12/12/2020' }
             ]
         },
         style: {
