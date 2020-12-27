@@ -6,8 +6,10 @@ export function NoteVideo({ note, onNoteEdit }) {
 
   return (
     <section className="note " >
+     
       <div className="video-container" style={{ backgroundColor: note.style.backgroundColor }}>
-      <h2>{note.info.title}</h2>
+      <i className="note fa fa-video-camera"></i>
+      <h4>{note.info.title}</h4>
         <iframe width="260" height="130" src={note.info.url} ></iframe>
         <NotesBtn note={note} onNoteEdit={onNoteEdit} />
       </div>

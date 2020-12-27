@@ -166,17 +166,17 @@ var notes = [{
         type: "NoteText",
         isPinned: true,
         info: {
-            txt: "Fullstack Me Baby!"
+            txt: "Any fool can write code that a computer can understand. good programmers write code that humans can understand."
         },
         style: {
-            backgroundColor: "#E6E6FA"
+            backgroundColor: "#598eb3"
         }
     },
     {
         id: utilService.makeId(),
         type: "NoteTodos",
         isPinned: true,
-        isMarked: false,
+        isMarked: true,
         info: {
             label: "Todo List",
             todos: [
@@ -185,7 +185,7 @@ var notes = [{
             ]
         },
         style: {
-            backgroundColor: "	#AFEEEE"
+            backgroundColor: "#d7aefb"
         }
     },
     {
@@ -193,7 +193,7 @@ var notes = [{
         type: "NoteText",
         isPinned: true,
         info: {
-            txt: "Fullstack Me Baby!"
+            txt: "Before software can be reusable it first has to be usable."
         },
         style: {
             backgroundColor: "#E6E6FA"
@@ -205,38 +205,26 @@ var notes = [{
         isPinned: true,
         info: {
             url: "https://media0.giphy.com/media/KPaJ8b9Ztkty0/200.gif",
-            title: "Me playing Mi"
+            title: "Scotter first, AppSus after"
         },
         style: {
-            backgroundColor: "#E0FFFF"
+            backgroundColor: "#fb7756"
         }
     },
     {
         id: utilService.makeId(),
         type: "NoteTodos",
-        isPinned: true,
+        isPinned: false,
         isMarked: false,
         info: {
-            label: "How was it:",
+            label: "List",
             todos: [
-                { txt: "Do that", doneAt: '22/05/2020' },
+                { txt: "Do that..", doneAt: '22/05/2020' },
                 // { txt: "Do this", doneAt: '12/12/2020' }
             ]
         },
         style: {
-            backgroundColor: "	#AFEEEE"
-        }
-    },
-    {
-        id: utilService.makeId(),
-        type: 'NoteVideo',
-        isPinned: false,
-        info: {
-            url: 'https://www.youtube.com/embed/BRrrEjAvXkE',
-            title: 'speacial title'
-        },
-        style: {
-            backgroundColor: '	#AFEEEE'
+            backgroundColor: "#b03c70"
         }
     },
     {
@@ -245,26 +233,39 @@ var notes = [{
         isPinned: true,
         info: {
             url: "https://miro.medium.com/max/1634/0*r6iQzljiuJavVxRM",
-            title: "Eat, Sleep, Repeat"
+            title: "Eat, Sleep, Code, Repeat"
         },
         style: {
-            backgroundColor: "#E0FFFF"
+            backgroundColor: "#fb569f"
         }
     },
+    {
+        id: utilService.makeId(),
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            url: 'https://www.youtube.com/embed/BRrrEjAvXkE',
+            title: ''
+        },
+        style: {
+            backgroundColor: '#4DE77B'
+        }
+    },
+
     {
         id: utilService.makeId(),
         type: "NoteTodos",
         isPinned: true,
         isMarked: false,
         info: {
-            label: "How was it:",
+            label: "Let`s TODO it",
             todos: [
-                { txt: "Do this", doneAt: '22/05/2020' },
+                { txt: "Do this..", doneAt: '22/05/2020' },
                 // { txt: "", doneAt: '12/12/2020' }
             ]
         },
         style: {
-            backgroundColor: "	#AFEEEE"
+            backgroundColor: "#b03c70"
         }
     },
     {
@@ -273,10 +274,10 @@ var notes = [{
         isPinned: false,
         info: {
             url: 'https://www.youtube.com/embed/UIQ03GXhD2E',
-            title: 'speacial title'
+            title: ''
         },
         style: {
-            backgroundColor: '	#AFEEEE'
+            backgroundColor: '#fb7756'
         }
     },
 ];
